@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html
+    class="no-js ptf-is--home-dark ptf-is--header-style-5 ptf-is--footer-style-5 ptf-is--custom-cursor ptf-is--footer-fixed"
+    lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <title>NeoteLabs :: We innovate </title>
+    <meta name="description" content="Multipurpose HTML5 Template">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="icon" type="image/png" href="{% static 'assets/img/brand/favicon.svg' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/framework/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/framework/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/framework/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ptf-plugins.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&amp;display=swap">
+    <link rel="stylesheet" href="{% static 'assets/fonts/CerebriSans/style.css' %}">
+    <link rel="stylesheet"
+        href="{% static 'assets/fonts/LineIcons-PRO/WebFonts/Pro-Light/font-css/LinIconsPro-Light.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/LineIcons-PRO/WebFonts/Pro-Regular/font-css/LineIcons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/Socicons/socicon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ptf-main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+</head>
+
+<body>
+
+    <div class="ptf-site-wrapper animsition">
+
+        <div class="ptf-site-wrapper__inner">
+
+            <header class="ptf-header ptf-header--style-5 ptf-header--opaque">
+                <div class="ptf-navbar ptf-navbar--main ptf-navbar--sticky">
+                    <div class="container-xxl">
+                        <div class="ptf-navbar-inner">
+                            <a class="ptf-navbar-logo" href="{% url 'pages:home' %}">
+                                <img class="black" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
+                                    loading="lazy">
+                                <img class="white" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
+                                    loading="lazy">
+                            </a>
+
+                            <nav class="ptf-nav ptf-nav--default">
+                                {% include "includes/navbar.html" %}
+                            </nav>
+
+                            <a class="ptf-offcanvas-menu-icon js-offcanvas-menu-toggle" href="#"><i
+                                    class="lnir lnir-menu-alt-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="ptf-site-overlay"></div>
+
+            <div class="ptf-offcanvas-menu">
+                <div class="ptf-offcanvas-menu__header">
+                    <a class="ptf-offcanvas-menu-icon js-offcanvas-menu-toggle" href="#"><i
+                            class="lnir lnir-close"></i></a>
+                </div>
+                <div class="ptf-offcanvas-menu__navigation">
+
+                    <nav class="ptf-nav ptf-nav--offcanvas">
+                        {% include "includes/navbar.html" %}
+                    </nav>
+                </div>
+                <div class="ptf-offcanvas-menu__footer">
+                    <p class="ptf-offcanvas-menu__copyright">© {% now "Y" %} <span>Neotelabs</span>. All Rights
+                        Reserved.</p>
+                    <div class="ptf-offcanvas-menu__socials">
+                        <a class="ptf-social-icon ptf-social-icon--style-3 twitter" href="#" target="_blank"><i
+                                class="socicon-twitter"></i></a>
+                        <a class="ptf-social-icon ptf-social-icon--style-3 facebook" href="#" target="_blank"><i
+                                class="socicon-facebook"></i></a>
+                        <a class="ptf-social-icon ptf-social-icon--style-3 instagram" href="#" target="_blank"><i
+                                class="socicon-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+            {% block content %}
+
+            {% endblock content %}
+
+        </div>
+        <footer class="ptf-footer ptf-footer--style-1">
+            <div class="container-xxl">
+                <div class="ptf-footer__top">
+                    <div class="row">
+                        <div class="col-12 col-xl-6">
+
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="0">
+                                <div class="ptf-footer-heading has-black-color" style="max-width: 37.5rem;">Have an idea? </br>Let’s build it!</div>
+                                <div class="ptf-footer-heading has-black-color">Start by <a
+                                        class="has-accent-1 text-decoration-underline" href="{% url 'pages:contact' %}">Saying
+                                        Hi!</a></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-3">
+
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="100">
+                                <div class="ptf-widget ptf-widget-links has-black-color">
+                                    <h4 class="ptf-widget-title">Links</h4>
+                                    <ul>
+                                        <li><a href="faq.html">Faqs</a></li>
+                                        <li><a href="#">Term & Conditions</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Help</a></li>
+                                        <li><a href="#">Affiliate</a></li>
+                                        <li><a href="services.html">Services</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-3">
+
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="200">
+                                <div class="ptf-widget ptf-widget-text">
+                                    <h4 class="ptf-widget-title">Contact</h4>
+                                    <p class="fz-24">Warioba streets, Mwai Kibaki road. Dar es saalaam Tanzania</p><a
+                                        class="fz-40 has-black-color"
+                                        href="mailto:info@neotelabs.com">info@neotelabs.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ptf-footer__bottom">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md"><a href=""><img src="{% static 'assets/img/brand/logo.svg' %}" alt=""
+                                    loading="lazy"></a></div>
+                        <div class="col-12 col-md">
+                            <p class="ptf-footer-copyright has-black-color">© {% now "Y" %} <span>Neotelabs</span>. All Rights
+                                Reserved.</p>
+                        </div>
+                        <div class="col-12 col-md d-none d-xl-block"></div>
+                        <div class="col-12 col-lg">
+                            <div class="ptf-footer-socials has-black-color">
+                                <a class="ptf-social-icon ptf-social-icon--style-1 twitter" href="#" target="_blank"><i
+                                        class="socicon-twitter"></i></a>
+                                <a class="ptf-social-icon ptf-social-icon--style-1 facebook" href="#" target="_blank"><i
+                                        class="socicon-facebook"></i></a>
+                                <a class="ptf-social-icon ptf-social-icon--style-1 instagram" href="#"
+                                    target="_blank"><i class="socicon-instagram"></i></a>
+                                <a class="ptf-social-icon ptf-social-icon--style-1 pinterest" href="#"
+                                    target="_blank"><i class="socicon-pinterest"></i></a>
+                                <a class="ptf-social-icon ptf-social-icon--style-1 dribbble" href="#" target="_blank"><i
+                                        class="socicon-dribbble"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'assets/scripts/ptf-plugins.min.js' %}"></script>
+    <script src="{% static 'assets/scripts/ptf-helpers.js' %}"></script>
+    <script src="{% static 'assets/scripts/ptf-controllers.min.js' %}"></script>
+</body>
+
+</html>
