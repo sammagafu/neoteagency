@@ -331,7 +331,7 @@
     font-weight: 700;
     line-height: 1.1;
     padding: .5rem 0;
-    color: var(--ptf-color-black)
+    color: var(--ptf-color-10)
 }
 
 .ptf-nav--offcanvas .sf-menu>li:last-child,
@@ -2776,9 +2776,10 @@ p.form-submit {
 }
 
 .ptf-nav--default .sf-menu>li>a {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     line-height: 1;
+    font-family: var(--ptf-heading-font);
     text-transform: uppercase;
     color: inherit
 }
@@ -2786,7 +2787,7 @@ p.form-submit {
 .ptf-header--style-5 .ptf-nav--default .sf-menu>li>a {
     font-weight: 400;
     text-transform: none;
-    color: var(--ptf-color-2)
+    color: var(--ptf-color-1)
 }
 
 .ptf-nav--default .sf-menu>li>a>span {
@@ -2815,14 +2816,14 @@ p.form-submit {
 .ptf-nav--default .sf-menu>li.current-menu-item>a,
 .ptf-nav--default .sf-menu>li.sfHover>a,
 .ptf-nav--default .sf-menu>li:hover>a {
-    color: var(--ptf-accent-1)
+    color: var(--ptf-accent-2)
 }
 
 .ptf-header--style-5 .ptf-nav--default .sf-menu>li.current-menu-ancestor>a,
 .ptf-header--style-5 .ptf-nav--default .sf-menu>li.current-menu-item>a,
 .ptf-header--style-5 .ptf-nav--default .sf-menu>li.sfHover>a,
 .ptf-header--style-5 .ptf-nav--default .sf-menu>li:hover>a {
-    color: var(--ptf-color-white)
+    color: var(--ptf-accent-2)
 }
 
 .ptf-nav--default .sf-menu>li.current-menu-ancestor>a>span::after,
@@ -8906,7 +8907,8 @@ p.form-submit {
 }
 
 .ptf-team-member .ptf-team-member__name {
-    font-size: 1.25rem
+    font-size: 1.25rem;
+    color: var(--ptf-color-2)
 }
 
 .ptf-team-member .ptf-team-member__name a:hover {
@@ -8916,7 +8918,7 @@ p.form-submit {
 
 .ptf-team-member .ptf-team-member__function {
     font-size: .875rem;
-    color: var(--ptf-color-2)
+    color: var(--ptf-color-5)
 }
 
 .ptf-team-member:hover .ptf-team-member__avatar .shadow-effect {

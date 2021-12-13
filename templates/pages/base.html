@@ -38,10 +38,10 @@
                     <div class="container-xxl">
                         <div class="ptf-navbar-inner">
                             <a class="ptf-navbar-logo" href="{% url 'pages:home' %}">
-                                <img class="black" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
-                                    loading="lazy">
-                                <img class="white" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
-                                    loading="lazy">
+                                <img class="black ptf-animated-block" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
+                                    loading="lazy" data-aos="fade" data-aos-delay="0">
+                                <img class="white ptf-animated-block" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
+                                    loading="lazy" data-aos="fade" data-aos-delay="0">
                             </a>
 
                             <nav class="ptf-nav ptf-nav--default">
@@ -164,3 +164,5 @@
 </body>
 
 </html>
+
+<div class="ptf-animated-block" data-aos="fade" data-aos-delay="0">
