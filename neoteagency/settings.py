@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pages',
     'project',
     'insight',
+    'django_quill',
 ]
 
 MIDDLEWARE = [
