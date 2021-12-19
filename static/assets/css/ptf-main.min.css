@@ -7302,7 +7302,7 @@ p.form-submit {
 
 .ptf-divider {
     --ptf-height: 2px;
-    --ptf-color: var(--ptf-color-black)
+    --ptf-color: var(--ptf-color-5)
 }
 
 .ptf-divider {
@@ -8215,7 +8215,7 @@ p.form-submit {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    color: var(--ptf-color-black)
+    color: var(--ptf-color-1)
 }
 
 .ptf-services-list--style-5 li a:hover {
