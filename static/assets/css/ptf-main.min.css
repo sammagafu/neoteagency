@@ -4223,7 +4223,7 @@ p.form-submit {
     margin-top: .625rem;
     margin-left: 1.875rem;
     padding: 6px 2px;
-    color: var(--ptf-color-black)
+    color: var(--ptf-white-black)
 }
 
 .ptf-page-navigation li.next {

@@ -25,51 +25,71 @@
                     style="object-fit: cover; object-position: 50% 50%; max-width: none; position: fixed; top: 0px; left: 0px; width: 1910px; height: 743.2px; overflow: hidden; pointer-events: none; transform-style: preserve-3d; backface-visibility: hidden; will-change: transform, opacity; margin-top: -92.1px; transform: translate3d(0px, 3042.52px, 0px);">
             </div>
         </section>
-
         <section>
-            <div class="ptf-spacer" style=" --ptf-xxl: 10rem; --ptf-md: 5rem;"></div>
+
+            <div class="ptf-spacer" style=" --ptf-xxl: 7.5rem; --ptf-md: 3.75rem;"></div>
             <div class="container-xxl">
+                <div class="row">
+                    <div class="col-xl-8">
 
-                <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
-                    <ul class="ptf-filters ptf-filters--style-1" id="ptf-filter-grid">
-                        <li class="filter-item filter-item-active" data-filter="*">All</li>
-                        {% for cat in category %}
-                        <li class="filter-item" data-filter=".filter-1">{{ cat.category }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-                <div class="ptf-spacer" style=" --ptf-xxl: 6.25rem; --ptf-md: 3.125rem;"></div>
-
-                <div class="ptf-animated-block aos-init" data-aos="fade" data-aos-delay="0">
-                    {% for proj in project %}
-                    <div class="ptf-isotope-grid" data-columns="2" data-layout="masonry" data-x-gap="170"
-                    data-y-gap="120" data-controls="#ptf-filter-grid"
-                    style="--ptf-gutter-x:170px; --ptf-gutter-y:120px; position: relative; height: 1835.09px;">
-                    <div class="grid-sizer"></div>
-                    <div class=" grid-item filter-1 filter-4 filter-7"
-                        style="position: absolute; left: 0px; top: 0px;">
-
-                        <article class="ptf-work ptf-work--style-1 ptf-work--large-title">
-                            <div class="ptf-work__media"><a class="ptf-work__link"
-                                    href="{{ proj.get_absolute_url }}"></a><img
-                                    src="{{ proj.cover.url }}" alt="" loading="lazy">
+                        <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
+                            <div class="ptf-isotope-grid" data-columns="1" data-layout="masonry" data-x-gap="15"
+                                data-y-gap="15"
+                                style="--ptf-gutter-x:15px; --ptf-gutter-y:15px; position: relative; height: 1989px;">
+                                <div class="grid-sizer"></div>
+                                {% for ins in insight %}
+                                <div class=" grid-item filter-1 filter-4"
+                                style="position: absolute; left: 0px; top: 0px;">
+                                <article class="ptf-post ptf-post--style-3">
+                                    <div class="ptf-post__media"><a class="ptf-work__link"
+                                            href="{{ ins.get_absolute_url }}"></a><img
+                                            src="{{ ins.cover.url }}" alt="" loading="lazy">
+                                    </div>
+                                    <div class="ptf-post__content">
+                                        <header class="ptf-post__header">
+                                            <div class="ptf-post__meta"><span class="cat has-white-color">Product</span><span
+                                                    class="date">{{ ins.published_date }}</span>
+                                            </div>
+                                            <h3 class="ptf-post__title has-white-color"><a href="{{ ins.get_absolute_url }}">{{ ins.insight }}</a>
+                                            </h3>
+                                        </header>
+                                        <footer class="ptf-post__footer">
+                                            <div class="ptf-post__info"><a class="comments" href="#"><i
+                                                        class="lnil lnil-comments"></i>12 Comments</a><a
+                                                    class="author" href="#"><i class="lnil lnil-user"></i>by
+                                                    <span class="has-white-color">Neotelabs Admin</span></a></div>
+                                        </footer>
+                                    </div>
+                                </article>
                             </div>
-                            <div class="ptf-work__meta">
-                                <div class="ptf-work__category">UI/UX
-                                </div>
-                                <h4 class="ptf-work__title has-white-color"><a href="{{ proj.get_absolute_url }}">{{ proj.project }}</a>
-                                </h4>
+                                {% endfor %}
                             </div>
-                        </article>
+                        </div>
+
+                        <div class="ptf-spacer" style=" --ptf-xxl: 9.375rem; --ptf-md: 4.6875rem;"></div>
+
+                        <div class="ptf-animated-block aos-init" data-aos="fade" data-aos-delay="0">
+                            <ul class="ptf-page-navigation">
+                                <li class="is-active">1</li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>...</li>
+                                <li><a href="#">20</a></li>
+                                <li class="next"><a href="#"><i class="lnil lnil-chevron-right"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                    {% endfor %}
+                    <div class="col-xl-4">
+                        
+                    </div>
                 </div>
             </div>
 
-            <div class="ptf-spacer" style=" --ptf-xxl: 8.125rem; --ptf-md: 4.0625rem;"></div>
+            <div class="ptf-spacer" style=" --ptf-xxl: 10rem; --ptf-md: 5rem;"></div>
         </section>
+
     </article>
 </main>
 {% endblock content %}

@@ -16,8 +16,6 @@ class InsightCategory(models.Model):
         super(InsightCategory,self).save()
 
     class Meta:
-        """Meta definition for Insight."""
-
         verbose_name = 'Insight Category'
         verbose_name_plural = 'Insight Categories'
 
@@ -31,21 +29,17 @@ class Insight(models.Model):
     published_date = models.DateField(_("Published Date"), auto_now=False, auto_now_add=True)
     category = models.ManyToManyField(InsightCategory)
 
-    """Model definition for Insight."""
     class Meta:
-        """Meta definition for Insight."""
-
         verbose_name = 'Insight'
         verbose_name_plural = 'Insights'
 
     def __str__(self):
-        return self.Insight
+        return self.insight
 
     def save(self):
-        if self.slug:
-            self.slug = slugify(self.Insight)
-            super(Insight,self).save()
+        self.slug = slugify(self.insight)
+        super(Insight,self).save()
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('insights:detail', args=[str(self.slug)])
+        return reverse('insight:detail', args=[str(self.slug)])
