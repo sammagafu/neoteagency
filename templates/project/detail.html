@@ -1,0 +1,102 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<main class="ptf-main">
+    <article class="ptf-page ptf-page--single-work-1">
+        <section>
+
+            <div class="ptf-spacer" style=" --ptf-xxl: 10rem; --ptf-md: 5rem;"></div>
+            <div class="container-xxl">
+                <div class="row">
+                    <div class="col-xl-6">
+
+                        <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
+                            <h1 class="large-heading has-white-color">{{ project.project }}</h1>
+
+                            <div class="ptf-spacer" style=" --ptf-xxl: 5rem; --ptf-md: 2.5rem;"></div>
+                            <a class="ptf-social-icon ptf-social-icon--style-3 twitter" href="#" target="_blank"><i
+                                    class="socicon-twitter"></i></a>
+                            <a class="ptf-social-icon ptf-social-icon--style-3 facebook" href="#" target="_blank"><i
+                                    class="socicon-facebook"></i></a>
+                            <a class="ptf-social-icon ptf-social-icon--style-3 instagram" href="#" target="_blank"><i
+                                    class="socicon-instagram"></i></a>
+                            <a class="ptf-social-icon ptf-social-icon--style-3 pinterest" href="#" target="_blank"><i
+                                    class="socicon-pinterest"></i></a>
+                        </div>
+
+                        <div class="ptf-spacer" style=" --ptf-lg: 4.375rem; --ptf-md: 2.1875rem;"></div>
+                    </div>
+                    <div class="col-xl-3">
+
+                        <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+
+                        <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="100">
+                            <h5 class="fz-14 text-uppercase has-3-color fw-normal">Client</h5>
+
+                            <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+                            <p class="fz-20 lh-1p5 has-white-color">{{ project.client }}</p>
+                        </div>
+
+                        <div class="ptf-spacer" style=" --ptf-xxl: 4.375rem; --ptf-md: 2.1875rem;"></div>
+
+                        <div class="ptf-animated-block aos-init" data-aos="fade" data-aos-delay="200">
+                            <h5 class="fz-14 text-uppercase has-3-color fw-normal">Services</h5>
+
+                            <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+                            <p class="fz-20 lh-1p5 has-white-color">{{ project.skills }}</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+
+                        <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+
+                        <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="300">
+                            <h5 class="fz-14 text-uppercase has-3-color fw-normal">Project Category</h5>
+
+                            <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+                            <p class="fz-20 lh-1p5 has-white-color">LoganCee - UI/UX Designer</p>
+                        </div>
+
+                        <div class="ptf-spacer" style=" --ptf-xxl: 4.375rem; --ptf-md: 2.1875rem;"></div>
+
+                        <div class="ptf-animated-block aos-init" data-aos="fade" data-aos-delay="400">
+                            <h5 class="fz-14 text-uppercase has-3-color fw-normal">Date</h5>
+                            <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+                            <p class="fz-20 lh-1p5 has-white-color">{{ project.published_date }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ptf-spacer" style=" --ptf-xxl: 6.25rem; --ptf-md: 3.125rem;"></div>
+        </section>
+        <section>
+            <div class="container-xxl">
+
+                <div class="ptf-animated-block aos-init" data-aos="fade" data-aos-delay="0">
+
+                    <div class="ptf-simple-image"><a href="{{ project.cover.url }}"
+                            data-fancybox="" rel="nofollow"><img
+                                src="{{ project.cover.url }}" alt="" loading="lazy"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+
+            <div class="ptf-spacer" style=" --ptf-xxl: 10rem; --ptf-md: 3.125rem;"></div>
+            <div class="container">
+
+                <div class="ptf-animated-block aos-init project-content" data-aos="fade" data-aos-delay="0">
+                    {{ project.content.html|safe }}
+                </div>
+
+                <div class="ptf-spacer" style=" --ptf-xxl: 4.375rem; --ptf-md: 2.1875rem;"></div>
+            </div>
+        </section>
+    </article>
+</main>
+{% endblock content %}

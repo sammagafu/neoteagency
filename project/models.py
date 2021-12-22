@@ -45,9 +45,10 @@ class Project(models.Model):
         return self.project
 
     def save(self):
-        self.slug = slugify(self.project)
-        super(Project,self).save()
+        if self.slug:
+            self.slug = slugify(self.project)
+            super(Project,self).save()
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('project:detail', args=[str(self.slug)])
+        return reverse('projects:detail', args=[str(self.slug)])

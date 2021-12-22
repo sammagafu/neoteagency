@@ -4297,7 +4297,8 @@ p.form-submit {
 
 .ptf-filters--style-1 {
     font-size: 1.125rem;
-    color: var(--ptf-color-black)
+    font-family: var(--ptf-heading-font);
+    color: var(--ptf-color-white)
 }
 
 .ptf-filters--style-1 .filter-item-active,

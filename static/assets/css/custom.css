@@ -209,16 +209,26 @@
         bottom: 5%
     }
 }
+.hero-header-text {
+    height: 75vh;
+    width: 100vw;
+}
+#neote-team{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-header {
-    max-height: 100vh;
-    max-width: 100vw;
-    overflow: hidden;
-    background: black;
 }
 
-header .hero-header-text {
-    background-position: cover;
-    background-image: url(../img/neote/team.jpg);
-    opacity: 0.5;
-}
+#color-overlay {
+    position: absolute;
+	top: 0; left: 0; 
+	width:100%; 
+	height:100%; 
+	background:rgba(0, 0, 0, 0.5); 
+	z-index: -99;
+ }
+
+ .project-content h3,h2,h1,strong{
+    color:#fff!important;
+ }

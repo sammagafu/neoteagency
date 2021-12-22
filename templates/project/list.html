@@ -1,0 +1,67 @@
+{% extends 'pages/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<main class="ptf-main">
+    <article class="ptf-page ptf-page--portfolio-grid">
+        <section>
+
+            <div class="ptf-spacer" style=" --ptf-xxl: 10rem; --ptf-md: 5rem;"></div>
+            <div class="container-xxl">
+                <div class="row">
+                    <div class="col-xl-10">
+
+                        <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
+                            <h1 class="large-heading has-white-color">Portfolio</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ptf-spacer" style=" --ptf-xxl: 4.375rem;"></div>
+            </div>
+            <div class="container-xxl">
+
+                <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
+                    <ul class="ptf-filters ptf-filters--style-1" id="ptf-filter-grid">
+                        <li class="filter-item filter-item-active" data-filter="*">All</li>
+                        {% for cat in category %}
+                        <li class="filter-item" data-filter=".filter-1">{{ cat.category }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="ptf-spacer" style=" --ptf-xxl: 6.25rem; --ptf-md: 3.125rem;"></div>
+
+                <div class="ptf-animated-block aos-init" data-aos="fade" data-aos-delay="0">
+                    {% for proj in project %}
+                    <div class="ptf-isotope-grid" data-columns="2" data-layout="masonry" data-x-gap="170"
+                    data-y-gap="120" data-controls="#ptf-filter-grid"
+                    style="--ptf-gutter-x:170px; --ptf-gutter-y:120px; position: relative; height: 1835.09px;">
+                    <div class="grid-sizer"></div>
+                    <div class=" grid-item filter-1 filter-4 filter-7"
+                        style="position: absolute; left: 0px; top: 0px;">
+
+                        <article class="ptf-work ptf-work--style-1 ptf-work--large-title">
+                            <div class="ptf-work__media"><a class="ptf-work__link"
+                                    href="{{ proj.get_absolute_url }}"></a><img
+                                    src="{{ proj.cover.url }}" alt="" loading="lazy">
+                            </div>
+                            <div class="ptf-work__meta">
+                                <div class="ptf-work__category">UI/UX
+                                </div>
+                                <h4 class="ptf-work__title has-white-color"><a href="{{ proj.get_absolute_url }}">{{ proj.project }}</a>
+                                </h4>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="ptf-spacer" style=" --ptf-xxl: 8.125rem; --ptf-md: 4.0625rem;"></div>
+        </section>
+    </article>
+</main>
+{% endblock content %}
