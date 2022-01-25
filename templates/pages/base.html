@@ -38,10 +38,12 @@
                     <div class="container-xxl">
                         <div class="ptf-navbar-inner">
                             <a class="ptf-navbar-logo" href="{% url 'pages:home' %}">
-                                <img class="black ptf-animated-block" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
-                                    loading="lazy" data-aos="fade" data-aos-delay="0">
-                                <img class="white ptf-animated-block" src="{% static 'assets/img/brand/logo-white.svg' %}" alt=""
-                                    loading="lazy" data-aos="fade" data-aos-delay="0">
+                                <img class="black ptf-animated-block"
+                                    src="{% static 'assets/img/brand/logo-white.svg' %}" alt="" loading="lazy"
+                                    data-aos="fade" data-aos-delay="0">
+                                <img class="white ptf-animated-block"
+                                    src="{% static 'assets/img/brand/logo-white.svg' %}" alt="" loading="lazy"
+                                    data-aos="fade" data-aos-delay="0">
                             </a>
 
                             <nav class="ptf-nav ptf-nav--default">
@@ -88,57 +90,89 @@
             {% endblock content %}
 
         </div>
+
+
         <footer class="ptf-footer ptf-footer--style-1">
-            <div class="container-xxl">
-                <div class="ptf-footer__top">
-                    <div class="row">
-                        <div class="col-12 col-xl-6">
+            <!-- <section>
 
-                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="0">
-                                <div class="ptf-footer-heading has-black-color" style="max-width: 37.5rem;">Have an idea? </br>Let’s build it!</div>
-                                <div class="ptf-footer-heading has-black-color">Start by <a
-                                        class="has-accent-1 text-decoration-underline" href="{% url 'pages:contact' %}">Saying
-                                        Hi!</a></div>
+                <div class="ptf-spacer" style=" --ptf-xxl: 9.375rem; --ptf-md: 4.6875rem;"></div>
+                <div class="container-xxl">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
+                                <h1 class="h1 fw-normal has-black-color">Newsletter</h1>
+    
+                                <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+                                <p>Get the latest news &amp; insight.</p>
                             </div>
+    
+                            <div class="ptf-spacer" style=" --ptf-lg: 3.75rem; --ptf-md: 1.875rem;"></div>
                         </div>
-                        <div class="col-12 col-md-6 col-xl-3">
-
-                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="100">
-                                <div class="ptf-widget ptf-widget-links has-black-color">
-                                    <h4 class="ptf-widget-title">Links</h4>
-                                    <ul>
-                                        <li><a href="faq.html">Faqs</a></li>
-                                        <li><a href="#">Term & Conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Help</a></li>
-                                        <li><a href="#">Affiliate</a></li>
-                                        <li><a href="services.html">Services</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-xl-3">
-
-                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="200">
-                                <div class="ptf-widget ptf-widget-text">
-                                    <h4 class="ptf-widget-title">Contact</h4>
-                                    <p class="fz-24">Warioba streets, Mwai Kibaki road. Dar es saalaam Tanzania</p><a
-                                        class="fz-40 has-black-color"
-                                        href="mailto:info@neotelabs.com">info@neotelabs.com</a>
-                                </div>
+                        <div class="col-lg-6 offset-lg-2">
+    
+                            <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="100">
+    
+                                <form class="ptf-subscribe-form ptf-subscribe-form--large">
+                                    <div class="ptf-form-group"><i class="lnil lnil-envelope-alt"></i>
+                                        <input type="email" placeholder="Email Address">
+                                        <button>Subscribe</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+    
+                <div class="ptf-spacer" style=" --ptf-xxl: 10rem; --ptf-md: 5rem;"></div>
+            </section> -->
+
+            <div class="container-xxl">
+                <div class="ptf-footer__top">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ptf-animated-block aos-init aos-animate" data-aos="fade" data-aos-delay="0">
+                                <h1 class="h2 has-accent-1">We collaborate with ambitious brands and people. <br> Let's build. <a href="mailto:biz@neotelabs.com" class="cta">biz@neotelabs.com</a></h1>
+                                <div class="ptf-spacer" style=" --ptf-xxl: 1.25rem;"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="100">
+                                <h4 class="">Build</h4>
+                                <p>Let's help you build something.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="100">
+                                <h4 class="">Co-incubate</h4>
+                                <p>Co-incubade an idea together</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="100">
+                                <h4 class="">Customise</h4>
+                                <p>Customise a solution for your business.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-xl-3">
+                            <div class="ptf-animated-block" data-aos="fade" data-aos-delay="100">
+                                <h4 class="">Organise</h4>
+                                <p>Organise learning session with us.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ptf-spacer" style=" --ptf-xxl: 7.5rem; --ptf-md: 3.75rem;"></div>
+                </div>
                 <div class="ptf-footer__bottom">
-                    <div class="row align-items-center">
+                    <div class="row align-items-start">
                         <div class="col-12 col-md"><a href=""><img src="{% static 'assets/img/brand/logo.svg' %}" alt=""
                                     loading="lazy"></a></div>
+                                    <div class="col-12 col-md d-none d-xl-block"></div>
                         <div class="col-12 col-md">
-                            <p class="ptf-footer-copyright has-black-color">© {% now "Y" %} <span>Neotelabs</span>. All Rights
+                            <p class="ptf-footer-copyright has-black-color">© {% now "Y" %} <span>Neotelabs</span>. All
+                                Rights
                                 Reserved.</p>
                         </div>
-                        <div class="col-12 col-md d-none d-xl-block"></div>
+                        
                         <div class="col-12 col-lg">
                             <div class="ptf-footer-socials has-black-color">
                                 <a class="ptf-social-icon ptf-social-icon--style-1 twitter" href="#" target="_blank"><i
@@ -163,7 +197,7 @@
     <script src="{% static 'assets/scripts/ptf-controllers.min.js' %}"></script>
     <script src="{% static 'assets/scripts/scrambler.js' %}"></script>
     <script src="{% static 'assets/scripts/neote.js' %}"></script>
-    </body>
+</body>
 
 </html>
 
