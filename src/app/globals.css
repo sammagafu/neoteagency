@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080c14;
+  --foreground: #f1f5f9;
+  --muted: #94a3b8;
+  --surface: #0f1520;
+  --surface-light: #161d2e;
+  --surface-lighter: #1e2738;
+  --border: #1e293b;
+  --accent: #3b9eff;
+  --accent-light: #60b4ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-surface-lighter: var(--surface-lighter);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-syne);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #3b9eff 0%, #60b4ff 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-glow {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(59, 158, 255, 0.15),
+    transparent
+  );
+}
+
+.card-hover {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59, 158, 255, 0.3);
+  box-shadow: 0 20px 40px -12px rgba(59, 158, 255, 0.15);
+}
+
+.grid-pattern {
+  background-image: linear-gradient(
+      rgba(59, 158, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(59, 158, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
