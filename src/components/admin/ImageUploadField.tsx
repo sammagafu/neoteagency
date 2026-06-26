@@ -92,7 +92,7 @@ export function ImageUploadField({
           <input
             ref={inputRef}
             type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif"
+            accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
             className="sr-only"
             disabled={uploading}
             onChange={handleFileChange}
@@ -111,7 +111,7 @@ export function ImageUploadField({
       </div>
 
       <p className="mt-2 text-xs text-muted">
-        JPEG, PNG, WebP, or GIF — max 5 MB
+        JPEG, PNG, WebP, GIF, or SVG — max 5 MB
       </p>
 
       {error && (

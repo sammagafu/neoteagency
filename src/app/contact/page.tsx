@@ -18,7 +18,7 @@ export default function ContactPage() {
       <PageHero
         label="Contact"
         title="Contact Us"
-        description="Let's create something exceptional together."
+        description="Tell us about your project — we respond within one business day."
         large
       />
 
@@ -31,7 +31,7 @@ export default function ContactPage() {
               </p>
               <p className="mt-4 text-lg leading-relaxed text-muted">
                 Ready to start your next project? Reach out and we&apos;ll get
-                back to you within 24 hours.
+                back to you within one business day.
               </p>
 
               <div className="mt-12 space-y-8">

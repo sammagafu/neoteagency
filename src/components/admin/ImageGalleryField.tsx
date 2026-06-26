@@ -103,7 +103,7 @@ export function ImageGalleryField({
         <input
           ref={inputRef}
           type="file"
-          accept="image/jpeg,image/png,image/webp,image/gif"
+          accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
           multiple
           className="sr-only"
           disabled={uploading}
@@ -112,7 +112,7 @@ export function ImageGalleryField({
       </label>
 
       <p className="mt-2 text-xs text-muted">
-        Upload multiple project images — JPEG, PNG, WebP, or GIF, max 5 MB each
+        Upload multiple project images — JPEG, PNG, WebP, GIF, or SVG, max 5 MB each
       </p>
 
       {error && (

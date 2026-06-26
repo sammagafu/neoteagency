@@ -16,9 +16,27 @@ const toolbarOptions = [
   [{ header: [2, 3, false] }],
   ["bold", "italic", "underline"],
   [{ list: "ordered" }, { list: "bullet" }],
-  ["link"],
+  ["link", "image"],
   ["clean"],
 ];
+
+async function uploadEditorImage(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("folder", "gallery");
+
+  const res = await fetch("/api/admin/upload", {
+    method: "POST",
+    body: formData,
+  });
+  const data = (await res.json()) as { url?: string; error?: string };
+
+  if (!res.ok || !data.url) {
+    throw new Error(data.error ?? "Image upload failed");
+  }
+
+  return data.url;
+}
 
 export function QuillEditor({
   name,
@@ -54,6 +72,33 @@ export function QuillEditor({
       });
 
       editor.root.innerHTML = toEditorHtml(value);
+
+      const toolbar = editor.getModule("toolbar") as {
+        addHandler: (name: string, handler: () => void) => void;
+      };
+
+      toolbar.addHandler("image", () => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/jpeg,image/png,image/webp,image/gif,image/svg+xml";
+        input.onchange = async () => {
+          const file = input.files?.[0];
+          if (!file) return;
+
+          try {
+            const url = await uploadEditorImage(file);
+            const range = editor.getSelection(true);
+            const index = range?.index ?? editor.getLength();
+            editor.insertEmbed(index, "image", url);
+            editor.setSelection(index + 1);
+          } catch (error) {
+            window.alert(
+              error instanceof Error ? error.message : "Image upload failed",
+            );
+          }
+        };
+        input.click();
+      });
 
       editor.on("text-change", () => {
         const html = editor.root.innerHTML;

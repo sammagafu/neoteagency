@@ -121,7 +121,7 @@ export const teamValues = [
 export const teamStats = [
   { value: "8", label: "Specialists across disciplines" },
   { value: "5", label: "Integrated service areas" },
-  { value: "1", label: "Team, one direction" },
+  { value: "6+", label: "Active brand partnerships" },
 ] as const;
 
 export type CareerPosition = {
@@ -255,9 +255,9 @@ export const clients = [
 ] as const;
 
 export const stats = [
-  { value: "200K+", label: "Cartons sold within one month" },
-  { value: "5", label: "Integrated solutions" },
-  { value: "4", label: "Reasons clients choose us" },
+  { value: "200K+", label: "Cartons sold in one launch" },
+  { value: "6+", label: "Brands across Tanzania" },
+  { value: "5", label: "Disciplines, one team" },
 ] as const;
 
 export const services = [
@@ -475,7 +475,7 @@ export const whyChooseUs = [
   "Strategic thinking backed by research",
   "Creative solutions that stand out",
   "Data-driven execution",
-  "Proven, measurable results",
+  "Proven results — including 200K+ units sold in 30 days",
 ] as const;
 
 export const featuredProject = {
@@ -685,7 +685,7 @@ export const processSteps = [
     title: "Strategy",
     tagline: "Insight becomes a clear plan.",
     description:
-      "We translate research into a actionable roadmap — defining positioning, messaging, channels, and creative direction so every team member knows exactly where we're headed.",
+      "We translate research into an actionable roadmap — defining positioning, messaging, channels, and creative direction so every team member knows exactly where we're headed.",
     duration: "2–3 weeks",
     activities: [
       "Brand positioning and messaging framework",

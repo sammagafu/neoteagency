@@ -12,7 +12,7 @@ export function Footer() {
               Contact Us
             </p>
             <p className="mt-3 font-display text-3xl font-bold text-foreground lg:text-4xl">
-              Let&apos;s create something exceptional together.
+              Let&apos;s start a conversation.
             </p>
           </div>
           <a
@@ -29,8 +29,9 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-              Turning brands into market leaders through strategy, creativity,
-              and data-driven execution.
+              A Dar es Salaam brand and marketing agency — turning brands into
+              market leaders through strategy, creativity, and data-driven
+              execution.
             </p>
           </div>
 

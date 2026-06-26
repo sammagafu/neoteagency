@@ -7,6 +7,7 @@ const ALLOWED_TYPES = new Map([
   ["image/png", ".png"],
   ["image/webp", ".webp"],
   ["image/gif", ".gif"],
+  ["image/svg+xml", ".svg"],
 ]);
 
 const ALLOWED_FOLDERS = new Set(["case-studies", "team", "gallery", "clients"]);
@@ -20,7 +21,7 @@ export async function saveUploadedImage(file: File, folder: string) {
 
   const extension = ALLOWED_TYPES.get(file.type);
   if (!extension) {
-    throw new Error("Only JPEG, PNG, WebP, and GIF images are allowed");
+    throw new Error("Only JPEG, PNG, WebP, GIF, and SVG images are allowed");
   }
 
   if (file.size > MAX_SIZE) {

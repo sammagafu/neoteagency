@@ -14,7 +14,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata: Metadata = createMetadata({
   title: "About",
   description:
-    "Learn about Neotelabs — our mission, team, and approach to helping brands grow, connect, and lead in Tanzania and East Africa.",
+    "Learn about Neotelabs — a Dar es Salaam brand and marketing agency helping brands grow, connect, and lead across Tanzania and East Africa.",
   path: "/about",
 });
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
       <PageHero
         label="About"
         title="About Us"
-        description="Neotelabs is a forward-thinking digital agency dedicated to helping brands grow, connect, and lead in a competitive landscape. We blend innovation, expertise, and execution to deliver results that go beyond expectations."
+        description="Neotelabs is a strategy-led brand and marketing agency based in Dar es Salaam — helping brands grow, connect, and lead across Tanzania and East Africa."
         large
       />
 
@@ -63,8 +63,8 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold leading-snug text-foreground lg:text-3xl">
                   To propel our clients toward exceptional success by delivering
-                  innovative, results-driven digital solutions tailored to
-                  their goals.
+                  innovative, results-driven brand and marketing solutions
+                  tailored to their goals.
                 </p>
               </div>
             </ScrollReveal>
@@ -74,8 +74,8 @@ export default function AboutPage() {
                   Vision
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold leading-snug text-foreground lg:text-3xl">
-                  To redefine digital marketing by setting new standards of
-                  excellence and empowering brands to dominate their industries.
+                  To set new standards of excellence and help brands lead in
+                  their categories across Tanzania and East Africa.
                 </p>
               </div>
             </ScrollReveal>
@@ -112,8 +112,9 @@ export default function AboutPage() {
               Meet the specialists
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-              Great brands are built by great people. Filter by department to
-              explore the team behind our integrated solutions.
+              Leadership and specialists across strategy, creative, technology,
+              and content — filter by department to explore the team behind our
+              work.
             </p>
           </ScrollReveal>
 
@@ -152,8 +153,8 @@ export default function AboutPage() {
               We turn ideas into impact
             </h2>
             <p className="mt-4 max-w-xl text-lg text-muted">
-              We turn ideas into impact through a structured and collaborative
-              process:
+              A structured, collaborative process from research to measurable
+              growth:
             </p>
           </ScrollReveal>
 

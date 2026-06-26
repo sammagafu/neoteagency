@@ -6,17 +6,17 @@ import { contactInfo } from "@/lib/site-data";
 export const siteConfig = {
   name: "Neotelabs",
   legalName: "Neotelabs",
-  tagline: "Digital Agency",
+  tagline: "Brand & Marketing Agency",
   url: "https://neotelabs.com",
   description:
-    "Neotelabs is a forward-thinking digital agency helping brands grow, connect, and lead through strategy, creativity, and data-driven execution.",
-  locale: "en_US",
+    "Neotelabs is a strategy-led brand and marketing agency in Dar es Salaam — helping brands grow, connect, and lead across Tanzania and East Africa.",
+  locale: "en_GB",
   defaultOgImage: "/assets/portfolio/work-1.png",
   twitterHandle: "@neotelabs",
   keywords: [
-    "digital agency",
-    "branding",
-    "marketing",
+    "brand agency",
+    "marketing agency",
+    "digital marketing",
     "web design",
     "content production",
     "Tanzania",

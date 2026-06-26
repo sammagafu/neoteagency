@@ -22,7 +22,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata: Metadata = createMetadata({
   title: "Home",
   description:
-    "Neotelabs is a forward-thinking digital agency helping brands grow, connect, and lead through strategy, creativity, and data-driven execution in Tanzania and East Africa.",
+    "Neotelabs is a strategy-led brand and marketing agency in Dar es Salaam — helping brands grow, connect, and lead across Tanzania and East Africa.",
   path: "/",
 });
 
@@ -100,10 +100,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <ScrollReveal>
             <p className="max-w-5xl font-display text-3xl font-semibold leading-snug text-foreground sm:text-4xl lg:text-5xl lg:leading-tight">
-              At Neotelabs, we are more than a digital agency — we are your{" "}
-              <span className="text-accent">growth partner</span>. We combine
-              strategic thinking, creative excellence, and technical expertise
-              to deliver solutions that drive real business impact.
+              We&apos;re a Dar es Salaam agency and your end-to-end brand
+              partner — combining strategic thinking, creative excellence, and
+              technical expertise to deliver measurable results across Tanzania
+              and East Africa.
             </p>
           </ScrollReveal>
         </div>
@@ -138,8 +138,8 @@ export default function HomePage() {
                   Integrated Solutions
                 </h2>
                 <p className="mt-4 max-w-xl text-lg text-muted">
-                  Integrated solutions designed to elevate your brand at every
-                  touchpoint.
+                  From strategy and design to technology and content — one team
+                  elevating your brand at every touchpoint.
                 </p>
               </div>
               <Link
@@ -162,8 +162,13 @@ export default function HomePage() {
       </section>
 
       {/* Clients */}
-      <section className="border-y border-border bg-surface py-4">
-        <ClientLogoMarquee logos={clientLogos} />
+      <section className="border-y border-border bg-surface py-8">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+          <p className="mb-4 text-center font-mono text-xs uppercase tracking-[0.3em] text-muted">
+            Trusted by leading brands
+          </p>
+          <ClientLogoMarquee logos={clientLogos} />
+        </div>
       </section>
 
       {/* Featured Project */}
@@ -262,7 +267,8 @@ export default function HomePage() {
               Ready to take your brand further?
             </h2>
             <p className="mx-auto mt-6 max-w-lg text-lg text-muted">
-              Let&apos;s build something exceptional together.
+              Tell us about your goals — we&apos;ll recommend the right mix of
+              strategy, creative, and technology.
             </p>
             <div className="mt-12 flex flex-wrap justify-center gap-4">
               <Button href="/contact" showArrow>
