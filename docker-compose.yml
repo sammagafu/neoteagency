@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://neotelabs.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-neotelabs-admin}
+      ADMIN_SECRET: ${ADMIN_SECRET:-change-me-to-a-long-random-string}
+      SMTP_HOST: ${SMTP_HOST:-mail.neotelabs.com}
+      SMTP_PORT: ${SMTP_PORT:-465}
+      SMTP_USER: ${SMTP_USER:-info@neotelabs.com}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-info@neotelabs.com}
+      CONTACT_TO: ${CONTACT_TO:-info@neotelabs.com}
+      SMTP_TLS_REJECT_UNAUTHORIZED: ${SMTP_TLS_REJECT_UNAUTHORIZED:-false}
+    volumes:
+      - neotelabs-data:/app/data
+      - neotelabs-uploads:/app/public/uploads
+    restart: unless-stopped
+
+volumes:
+  neotelabs-data:
+  neotelabs-uploads:

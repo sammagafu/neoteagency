@@ -1,36 +1,68 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
+import { PublicShell } from "@/components/PublicShell";
+import {
+  getSiteUrl,
+  organizationJsonLd,
+  siteConfig,
+  websiteJsonLd,
+} from "@/lib/seo";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-});
-
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "Neotelabs | Digital Agency",
-    template: "%s | Neotelabs",
+    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Neotelabs is a forward-thinking digital agency helping brands grow, connect, and lead through strategy, creativity, and data-driven execution.",
-  keywords: [
-    "digital agency",
-    "branding",
-    "marketing",
-    "Tanzania",
-    "Dar es Salaam",
-    "Neotelabs",
-  ],
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: getSiteUrl() }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: "/assets/brand/favicon.svg",
+    apple: "/assets/brand/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: getSiteUrl(),
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    images: [
+      {
+        url: siteConfig.defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    images: [siteConfig.defaultOgImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -39,11 +71,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${syne.variable} h-full`}>
-      <body className="flex min-h-full flex-col antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html lang="en" className="h-full">
+      <body className="grain flex min-h-full flex-col antialiased">
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <PublicShell>{children}</PublicShell>
       </body>
     </html>
   );

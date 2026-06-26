@@ -1,0 +1,63 @@
+/* Quill dark theme for admin CMS */
+
+.quill-editor-wrap .ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.quill-editor-wrap .ql-container.ql-snow {
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+}
+
+.quill-editor-wrap .ql-editor {
+  min-height: 160px;
+  color: var(--foreground);
+  line-height: 1.7;
+}
+
+.quill-editor-wrap .ql-editor.ql-blank::before {
+  color: var(--muted);
+  font-style: normal;
+  opacity: 0.6;
+}
+
+.quill-editor-wrap .ql-snow .ql-stroke {
+  stroke: var(--muted);
+}
+
+.quill-editor-wrap .ql-snow .ql-fill {
+  fill: var(--muted);
+}
+
+.quill-editor-wrap .ql-snow .ql-picker {
+  color: var(--muted);
+}
+
+.quill-editor-wrap .ql-snow .ql-picker-options {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.quill-editor-wrap .ql-snow.ql-toolbar button:hover,
+.quill-editor-wrap .ql-snow.ql-toolbar button.ql-active,
+.quill-editor-wrap .ql-snow .ql-picker-label:hover,
+.quill-editor-wrap .ql-snow .ql-picker-label.ql-active {
+  color: var(--accent);
+}
+
+.quill-editor-wrap .ql-snow.ql-toolbar button:hover .ql-stroke,
+.quill-editor-wrap .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.quill-editor-wrap .ql-snow.ql-toolbar button:hover .ql-fill,
+.quill-editor-wrap .ql-snow.ql-toolbar button.ql-active .ql-fill {
+  stroke: var(--accent);
+  fill: var(--accent);
+}
+
+.quill-editor-wrap .ql-snow a {
+  color: var(--accent);
+}
+
+/* Public site rich text - see globals.css */
