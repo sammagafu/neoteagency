@@ -1,21 +1,17 @@
 @extends('layouts.site')
 
 @section('title', 'About — '.($site['site_name'] ?? 'Neotelabs'))
-@section('hideNav')
-@endsection
 
 @section('content')
     <x-site.page-hero
         eyebrow="About"
         lede="{{ $site['about_blurb'] ?? 'A young, creative team raising the bar of your product just a bit higher — toward the top of the market.' }}"
         :image="asset('images/neote/team.jpg')"
-        :flush="true"
     >
         <x-slot:title>
             We lead the <span class="hero-word hero-word--a">digital</span> part of your business into <span class="hero-word hero-word--b">success</span>
         </x-slot:title>
         <x-slot:actions>
-            <a href="{{ route('home') }}" class="btn-ghost-light">Home</a>
             <a href="{{ route('contact') }}" class="btn-primary bg-paper text-ink hover:bg-accent hover:text-paper">Work with us</a>
             <a href="{{ route('projects.index') }}" class="btn-ghost-light">See the work</a>
         </x-slot:actions>
