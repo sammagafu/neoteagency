@@ -35,31 +35,4 @@
             </div>
         </div>
     </section>
-
-    <section class="border-y border-ink/10 bg-white py-28 lg:py-40">
-        <div class="site-container">
-            <div class="wow max-w-3xl" data-wow-animation="fadeInUp">
-                <p class="eyebrow">People</p>
-                <h2 class="mt-6 display-lg">The face of Neotelabs</h2>
-                <p class="mt-8 body-lg text-mist">A young, creative team of professionals who love what we do.</p>
-            </div>
-
-            <div class="mt-20 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-                @foreach ($team as $index => $member)
-                    <article class="wow group" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.08 * ($index % 4), 2) }}s">
-                        <div class="overflow-hidden bg-paper-deep">
-                            <img
-                                src="{{ $member->photoUrl() }}"
-                                alt="{{ $member->name }}"
-                                class="aspect-[3/4] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-                                loading="lazy"
-                            >
-                        </div>
-                        <h3 class="mt-5 font-display text-2xl font-bold tracking-tight">{{ $member->name }}</h3>
-                        <p class="mt-2 text-base font-light text-mist">{{ $member->role }}</p>
-                    </article>
-                @endforeach
-            </div>
-        </div>
-    </section>
 @endsection
