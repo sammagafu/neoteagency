@@ -9,12 +9,12 @@
 
 <header
     data-site-header
-    class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300 {{ request()->routeIs('home') ? 'is-on-dark text-paper' : 'text-ink' }}"
+    class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300 {{ request()->routeIs('home', 'about', 'projects.*', 'insights.*', 'contact') ? 'is-on-dark text-paper' : 'text-ink' }}"
 >
     <div class="site-container flex h-20 items-center justify-between lg:h-24">
         <a href="{{ route('home') }}" class="relative z-20 {{ request()->routeIs('home') ? 'nav-brand-active' : '' }}" aria-current="{{ request()->routeIs('home') ? 'page' : 'false' }}">
             <img
-                src="{{ asset(request()->routeIs('home') ? 'images/brand/logo-white.svg' : 'images/brand/logo.svg') }}"
+                src="{{ asset('images/brand/logo-white.svg') }}"
                 alt="{{ $site['site_name'] ?? 'Neotelabs' }}"
                 class="h-7 w-auto sm:h-8"
                 data-logo-light="{{ asset('images/brand/logo-white.svg') }}"
@@ -28,12 +28,12 @@
                 <a
                     href="{{ route($link['route']) }}"
                     @if ($isActive) aria-current="page" @endif
-                    class="nav-link text-[13px] font-medium tracking-[0.08em] uppercase transition {{ $isActive ? 'is-active' : '' }}"
+                    class="nav-link font-medium uppercase transition {{ $isActive ? 'is-active' : '' }}"
                 >
                     {{ $link['label'] }}
                 </a>
             @endforeach
-            <a href="{{ route('contact') }}" class="text-[13px] font-medium tracking-[0.08em] uppercase underline underline-offset-8 decoration-1 opacity-90 hover:opacity-100">
+            <a href="{{ route('contact') }}" class="text-[0.95rem] font-medium uppercase tracking-[0.06em] underline underline-offset-8 decoration-1 opacity-90 hover:opacity-100">
                 Let’s build
             </a>
         </nav>

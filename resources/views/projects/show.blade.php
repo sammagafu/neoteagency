@@ -5,48 +5,41 @@
 
 @section('content')
     <article>
-        <section class="relative min-h-[65vh] overflow-hidden pt-28">
-            <div class="parallax-frame">
-                <div class="parallax-layer" data-parallax="0.26">
-                    <img src="{{ $project->coverUrl() }}" alt="">
-                </div>
-                <div class="absolute inset-0 bg-ink/65"></div>
-            </div>
-            <div class="site-container relative flex min-h-[65vh] flex-col justify-end pb-14">
-                <p class="wow text-xs uppercase tracking-[0.25em] text-accent" data-wow-animation="fadeInDown">
-                    {{ $project->categories->pluck('name')->join(' · ') }}
-                </p>
-                <h1 class="wow mt-4 max-w-4xl font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
-                    {{ $project->title }}
-                </h1>
-                <div class="wow mt-6 flex flex-wrap gap-6 text-sm text-paper/70" data-wow-animation="fadeInUp" data-wow-delay="0.24s">
-                    @if ($project->client)<span>Client · {{ $project->client }}</span>@endif
-                    @if ($project->skills)<span>Skills · {{ $project->skills }}</span>@endif
-                </div>
-            </div>
-        </section>
+        <x-site.page-hero
+            :eyebrow="$project->categories->pluck('name')->join(' · ') ?: 'Case study'"
+            :lede="$project->excerpt ?? ''"
+            :image="$project->coverUrl()"
+        >
+            <x-slot:title>{{ $project->title }}</x-slot:title>
+            <x-slot:actions>
+                @if ($project->client)
+                    <span class="text-base text-paper/70">Client · {{ $project->client }}</span>
+                @endif
+                @if ($project->skills)
+                    <span class="text-base text-paper/70">Skills · {{ $project->skills }}</span>
+                @endif
+            </x-slot:actions>
+        </x-site.page-hero>
 
         <section class="site-container grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
-            <div class="reveal prose-site lg:col-span-8">
+            <div class="wow prose-site lg:col-span-8" data-wow-animation="fadeInUp">
                 {!! $project->content !!}
             </div>
-            <aside class="reveal reveal-delay-1 lg:col-span-4">
-                <div class="rounded-3xl bg-white/70 p-6 ring-1 ring-ink/10">
-                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-mist">Overview</p>
-                    <p class="mt-3 text-sm leading-relaxed text-ink/80">{{ $project->excerpt }}</p>
-                </div>
+            <aside class="wow lg:col-span-4" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
+                <p class="eyebrow">Overview</p>
+                <p class="mt-4 body-lg text-ink">{{ $project->excerpt }}</p>
             </aside>
         </section>
 
         @if ($related->isNotEmpty())
-            <section class="border-t border-ink/10 bg-white/40 py-20">
+            <section class="border-t border-ink/10 bg-white py-20 lg:py-28">
                 <div class="site-container">
-                    <h2 class="font-display text-3xl font-semibold text-ink">More work</h2>
-                    <div class="mt-10 grid gap-8 md:grid-cols-3">
+                    <h2 class="display-md">More work</h2>
+                    <div class="mt-12 grid gap-10 md:grid-cols-3">
                         @foreach ($related as $item)
                             <a href="{{ route('projects.show', $item) }}" class="group block">
                                 <img src="{{ $item->coverUrl() }}" alt="" class="aspect-[4/3] w-full object-cover" loading="lazy">
-                                <h3 class="mt-3 font-display text-xl font-semibold transition group-hover:text-accent">{{ $item->title }}</h3>
+                                <h3 class="mt-5 font-display text-2xl font-bold tracking-tight transition group-hover:text-accent" style="line-height: 1.15;">{{ $item->title }}</h3>
                             </a>
                         @endforeach
                     </div>

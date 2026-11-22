@@ -3,20 +3,22 @@
 @section('title', 'Insights — '.($site['site_name'] ?? 'Neotelabs'))
 
 @section('content')
-    <section class="site-container pb-16 pt-32 lg:pt-40">
-        <div class="reveal max-w-4xl">
-            <p class="font-display text-sm font-semibold uppercase tracking-[0.35em] text-accent">
-                {{ $site['site_name'] ?? 'Neotelabs' }}
-            </p>
-            <h1 class="mt-5 font-display text-5xl font-bold tracking-tight text-ink sm:text-6xl">Insights</h1>
-            <p class="mt-4 max-w-xl text-lg text-mist">Notes on growth, design, and the craft of shipping digital products.</p>
-        </div>
+    <x-site.page-hero
+        eyebrow="Insights"
+        lede="Notes on growth, design, and the craft of building digital products that earn attention."
+        :image="optional($insights->first())->coverUrl() ?? asset('videos/hero-poster.jpg')"
+    >
+        <x-slot:title>
+            Ideas that <span class="hero-word hero-word--a">ship</span> — and <span class="hero-word hero-word--b">scale</span>
+        </x-slot:title>
+    </x-site.page-hero>
 
+    <section class="site-container py-16 lg:py-20">
         @if ($categories->isNotEmpty())
-            <div class="reveal reveal-delay-1 mt-10 flex flex-wrap gap-2">
-                <a href="{{ route('insights.index') }}" class="rounded-full px-4 py-2 text-sm font-medium {{ $activeCategory === '' ? 'bg-ink text-paper' : 'bg-white/70 text-mist ring-1 ring-ink/10 hover:text-ink' }}">All</a>
+            <div class="wow flex flex-wrap gap-x-8 gap-y-3" data-wow-animation="fadeInUp">
+                <a href="{{ route('insights.index') }}" class="text-sm font-medium uppercase tracking-[0.16em] {{ $activeCategory === '' ? 'text-ink underline underline-offset-8' : 'text-mist hover:text-ink' }}">All</a>
                 @foreach ($categories as $category)
-                    <a href="{{ route('insights.index', ['category' => $category->slug]) }}" class="rounded-full px-4 py-2 text-sm font-medium {{ $activeCategory === $category->slug ? 'bg-ink text-paper' : 'bg-white/70 text-mist ring-1 ring-ink/10 hover:text-ink' }}">
+                    <a href="{{ route('insights.index', ['category' => $category->slug]) }}" class="text-sm font-medium uppercase tracking-[0.16em] {{ $activeCategory === $category->slug ? 'text-ink underline underline-offset-8' : 'text-mist hover:text-ink' }}">
                         {{ $category->name }}
                     </a>
                 @endforeach
@@ -24,19 +26,19 @@
         @endif
     </section>
 
-    <section class="site-container pb-24 lg:pb-32">
-        <div class="grid gap-10 lg:grid-cols-3">
+    <section class="site-container pb-28 lg:pb-40">
+        <div class="grid gap-14 lg:grid-cols-3">
             @forelse ($insights as $index => $insight)
-                <a href="{{ route('insights.show', $insight) }}" class="reveal reveal-delay-{{ min($index % 3, 3) }} group block">
+                <a href="{{ route('insights.show', $insight) }}" class="wow group block" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.06 * ($index % 3), 2) }}s">
                     <img src="{{ $insight->coverUrl() }}" alt="" class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.02]" loading="lazy">
-                    <p class="mt-4 text-xs uppercase tracking-[0.2em] text-mist">{{ optional($insight->published_at)->format('M j, Y') }}</p>
-                    <h2 class="mt-2 font-display text-2xl font-semibold text-ink transition group-hover:text-accent">{{ $insight->title }}</h2>
-                    <p class="mt-2 text-sm text-mist">{{ $insight->excerpt }}</p>
+                    <p class="mt-6 text-sm uppercase tracking-[0.18em] text-mist">{{ optional($insight->published_at)->format('M j, Y') }}</p>
+                    <h2 class="mt-3 font-display text-2xl font-bold tracking-tight text-ink transition group-hover:text-accent sm:text-3xl" style="line-height: 1.15;">{{ $insight->title }}</h2>
+                    <p class="mt-4 text-base font-light leading-relaxed text-mist">{{ $insight->excerpt }}</p>
                 </a>
             @empty
-                <p class="text-mist">No insights published yet.</p>
+                <p class="body-lg text-mist">No insights published yet.</p>
             @endforelse
         </div>
-        <div class="mt-12">{{ $insights->withQueryString()->links() }}</div>
+        <div class="mt-16">{{ $insights->withQueryString()->links() }}</div>
     </section>
 @endsection

@@ -29,7 +29,7 @@
                 &amp;
                 <span class="hero-word hero-word--b">Customers</span>
             </h1>
-            <p class="wow mt-8 hero-lede text-base font-light text-paper/70 sm:text-lg" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
+            <p class="wow mt-10 hero-lede text-paper/75" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
                 {{ $site['hero_subheadline'] ?? 'A digital growth partner turning brand ambition into experiences that convert.' }}
             </p>
             <div class="wow mt-12 flex flex-wrap gap-4" data-wow-animation="fadeInUp" data-wow-delay="0.4s">
@@ -46,7 +46,7 @@
             <h2 class="mt-8 display-lg text-balance">
                 Great products deserve exceptional experiences — online, offline, and everywhere between.
             </h2>
-            <p class="mt-10 max-w-2xl text-lg font-light leading-relaxed text-mist">
+            <p class="mt-10 body-lg text-mist">
                 We blend strategic innovation with proven expertise to drive results that extend beyond the digital realm. Setting standards — not just meeting them.
             </p>
         </div>

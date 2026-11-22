@@ -55,15 +55,16 @@
 :root {
     --phi: 1.618;
     --phi-inv: 0.618;
-    --type-base: 1.05rem;
-    --type-sm: calc(var(--type-base) / var(--phi));
-    --type-lg: calc(var(--type-base) * var(--phi));
-    --type-xl: calc(var(--type-base) * var(--phi) * var(--phi));
+    --type-base: 1.175rem;
+    --type-sm: calc(var(--type-base) / var(--phi) * 1.05);
+    --type-lg: calc(var(--type-base) * var(--phi) * 0.72);
+    --type-xl: calc(var(--type-base) * var(--phi) * var(--phi) * 0.72);
     --space-phi: calc(1rem * var(--phi));
     --space-phi-lg: calc(1rem * var(--phi) * var(--phi));
     --measure: 61.8ch;
-    --measure-narrow: 38.2ch;
-    --hero-title-max: 61.8%;
+    --measure-narrow: 42ch;
+    --hero-title-max: 72%;
+    --display-lh: 1.08;
 }
 
 @layer base {
@@ -83,6 +84,10 @@
         overflow: hidden;
     }
 
+    p {
+        line-height: var(--phi);
+    }
+
     ::selection {
         background: rgba(10, 10, 10, 0.14);
     }
@@ -94,44 +99,44 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center rounded-none bg-ink px-7 py-4 text-sm font-medium tracking-wide text-paper transition duration-300 hover:bg-accent;
+        @apply inline-flex items-center justify-center rounded-none bg-ink px-8 py-4 text-base font-medium tracking-wide text-paper transition duration-300 hover:bg-accent;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center rounded-none border border-ink/20 bg-transparent px-7 py-4 text-sm font-medium tracking-wide text-ink transition duration-300 hover:border-ink hover:bg-ink hover:text-paper;
+        @apply inline-flex items-center justify-center rounded-none border border-ink/20 bg-transparent px-8 py-4 text-base font-medium tracking-wide text-ink transition duration-300 hover:border-ink hover:bg-ink hover:text-paper;
     }
 
     .btn-ghost-light {
-        @apply inline-flex items-center justify-center rounded-none border border-paper/35 bg-transparent px-7 py-4 text-sm font-medium tracking-wide text-paper transition duration-300 hover:border-paper hover:bg-paper hover:text-ink;
+        @apply inline-flex items-center justify-center rounded-none border border-paper/35 bg-transparent px-8 py-4 text-base font-medium tracking-wide text-paper transition duration-300 hover:border-paper hover:bg-paper hover:text-ink;
     }
 
-    /* Golden-ratio type scale: each step × φ */
+    /* Golden-ratio type scale (size), breathing line-height on Y */
     .display-xl {
         font-family: 'Ample Soft Pro', sans-serif;
         font-weight: 700;
-        letter-spacing: -0.045em;
-        line-height: var(--phi-inv);
-        font-size: clamp(3rem, 8.5vw, calc(var(--type-base) * var(--phi) * var(--phi) * var(--phi) * 1.15));
+        letter-spacing: -0.04em;
+        line-height: var(--display-lh);
+        font-size: clamp(2.85rem, 7.2vw, 7.25rem);
     }
 
     .display-lg {
         font-family: 'Ample Soft Pro', sans-serif;
         font-weight: 700;
-        letter-spacing: -0.04em;
-        line-height: calc(var(--phi-inv) + 0.2);
-        font-size: clamp(2.35rem, 5.5vw, calc(var(--type-base) * var(--phi) * var(--phi) * 1.35));
+        letter-spacing: -0.035em;
+        line-height: 1.12;
+        font-size: clamp(2.25rem, 4.8vw, 4.75rem);
     }
 
     .display-md {
         font-family: 'Ample Soft Pro', sans-serif;
         font-weight: 700;
-        letter-spacing: -0.035em;
-        line-height: 1;
-        font-size: clamp(1.85rem, 3.8vw, var(--type-xl));
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        font-size: clamp(1.85rem, 3.2vw, 3.25rem);
     }
 
     .hero-title {
-        max-width: min(100%, 38.2rem + 23.6vw);
+        max-width: min(100%, 48rem);
         width: var(--hero-title-max);
         min-width: min(100%, 20rem);
     }
@@ -140,13 +145,20 @@
         .hero-title {
             width: 100%;
             max-width: 100%;
-            line-height: 0.92;
+            line-height: 1.1;
         }
+    }
+
+    .hero-lede,
+    .body-lg {
+        max-width: var(--measure);
+        font-size: clamp(1.125rem, 1.6vw, 1.35rem);
+        line-height: var(--phi);
+        font-weight: 300;
     }
 
     .hero-lede {
         max-width: var(--measure-narrow);
-        line-height: var(--phi);
     }
 
     .hero-word {
@@ -162,9 +174,15 @@
         color: #e23b1c; /* brand accent */
     }
 
+    .page-hero {
+        min-height: 72svh;
+    }
+
     .nav-link {
         position: relative;
-        opacity: 0.62;
+        opacity: 0.7;
+        font-size: 0.95rem;
+        letter-spacing: 0.06em;
     }
 
     .nav-link:hover {
@@ -180,8 +198,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: -0.45rem;
-        height: 1px;
+        bottom: -0.55rem;
+        height: 1.5px;
         background: currentColor;
     }
 
@@ -240,7 +258,35 @@
     }
 
     .eyebrow {
-        @apply text-[11px] font-medium uppercase tracking-[0.28em] text-mist;
+        @apply text-xs font-medium uppercase tracking-[0.24em] text-mist sm:text-[0.8125rem];
+    }
+
+    .prose-site {
+        font-size: 1.125rem;
+        line-height: var(--phi);
+        font-weight: 300;
+    }
+
+    .prose-site p + p {
+        margin-top: 1.25em;
+    }
+
+    .prose-site h2,
+    .prose-site h3 {
+        font-family: 'Ample Soft Pro', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        margin-top: 1.75em;
+        margin-bottom: 0.6em;
+    }
+
+    .prose-site h2 {
+        font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+    }
+
+    .prose-site h3 {
+        font-size: clamp(1.35rem, 2vw, 1.75rem);
     }
 
     .admin-input {
@@ -294,19 +340,6 @@
         opacity: 0.22;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
         mix-blend-mode: soft-light;
-    }
-
-    .prose-site {
-        @apply leading-relaxed text-ink-soft/90;
-    }
-
-    .prose-site p + p {
-        @apply mt-4;
-    }
-
-    .prose-site h2,
-    .prose-site h3 {
-        @apply mb-3 mt-8 font-display font-bold text-ink;
     }
 
     [data-nav-panel].is-open {
