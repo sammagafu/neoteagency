@@ -4,18 +4,37 @@ Laravel + Tailwind site for shared **cPanel** hosting (PHP **8.2+**, MySQL).
 
 ---
 
+## Ready-made upload package
+
+From the project root (on a machine with PHP, Composer, and Node):
+
+```bash
+chmod +x scripts/package-for-cpanel.sh
+./scripts/package-for-cpanel.sh
+```
+
+This produces `neotelabs-cpanel-*.zip` (also linked as `neotelabs-cpanel-latest.zip`) containing:
+
+- App code + `vendor/` (production, no-dev)
+- Built `public/build` assets, fonts, videos, images
+- Root + `public/.htaccess`
+- `.env.cpanel.example` and `UPLOAD-TO-CPANEL.txt`
+
+Upload that zip in cPanel → File Manager → Extract.
+
+---
+
 ## Quick checklist
 
-1. Upload code  
+1. Upload zip / code  
 2. Point document root to `public` (or use root `.htaccess`)  
 3. PHP 8.2/8.3 + required extensions  
-4. `composer install` + `.env` + `key:generate`  
-5. Upload pre-built `public/build` (or `npm run build`)  
-6. Create MySQL DB → migrate + seed + `storage:link`  
-7. Permissions on `storage` & `bootstrap/cache`  
-8. Cron for scheduler (client reports)  
-9. SMTP for mail  
-10. Change default admin password  
+4. Copy `.env.cpanel.example` → `.env` → fill values → `key:generate`  
+5. Create MySQL DB → migrate + seed + `storage:link`  
+6. Permissions on `storage` & `bootstrap/cache`  
+7. Cron for scheduler (client reports)  
+8. SMTP for mail  
+9. Change default admin password  
 
 ---
 
@@ -39,7 +58,7 @@ In cPanel → Domains / Subdomains → set **Document Root** to:
 Upload at least:
 
 - `app/`, `bootstrap/`, `config/`, `database/`, `public/`, `resources/`, `routes/`, `vendor/` (or install Composer on server)
-- `.env.example`, `artisan`, `composer.json`, `composer.lock`
+- `.env.cpanel.example` (rename/copy to `.env`), `artisan`, `composer.json`, `composer.lock`
 - Pre-built `public/build/` (CSS/JS), `public/fonts/`, `public/videos/`, `public/images/`
 
 ---
@@ -85,32 +104,33 @@ Fonts and hero video are already under `public/fonts` and `public/videos` — up
 
 ## 5. Configure `.env`
 
+```bash
+cp .env.cpanel.example .env
+# edit .env — APP_URL, DB_*, MAIL_*
+php artisan key:generate
+```
+
+Key values (also documented in `.env.cpanel.example`):
+
 ```env
-APP_NAME=Neotelabs
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://your-domain.com
 
 DB_CONNECTION=mysql
 DB_HOST=localhost
-DB_PORT=3306
 DB_DATABASE=cpanel_db_name
 DB_USERNAME=cpanel_db_user
 DB_PASSWORD=cpanel_db_password
 
-SESSION_DRIVER=database
-CACHE_STORE=database
 QUEUE_CONNECTION=sync
-FILESYSTEM_DISK=public
 
 MAIL_MAILER=smtp
 MAIL_HOST=mail.your-domain.com
 MAIL_PORT=587
-MAIL_USERNAME=info@your-domain.com
+MAIL_USERNAME=info@neotelabs.co.tz
 MAIL_PASSWORD=your-mail-password
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=info@your-domain.com
-MAIL_FROM_NAME="${APP_NAME}"
+MAIL_FROM_ADDRESS=info@neotelabs.co.tz
 ```
 
 Use **`QUEUE_CONNECTION=sync`** on shared hosting unless you run a long-lived queue worker.
