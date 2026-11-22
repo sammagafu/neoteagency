@@ -86,6 +86,9 @@ class ProjectController extends Controller
             'report_summary' => ['nullable', 'string'],
             'report_status' => ['nullable', 'string', 'max:120'],
             'progress_percent' => ['nullable', 'integer', 'min:0', 'max:100'],
+            'results' => ['nullable', 'array', 'max:6'],
+            'results.*.value' => ['nullable', 'string', 'max:40'],
+            'results.*.label' => ['nullable', 'string', 'max:80'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['integer', 'exists:project_categories,id'],
         ]);
@@ -99,6 +102,14 @@ class ProjectController extends Controller
         $data['progress_percent'] = $data['progress_percent'] ?? 0;
         $data['published_at'] = $data['published_at'] ?? now();
         $data['client_id'] = $data['client_id'] ?: null;
+        $data['results'] = collect($data['results'] ?? [])
+            ->map(fn ($row) => [
+                'value' => trim((string) ($row['value'] ?? '')),
+                'label' => trim((string) ($row['label'] ?? '')),
+            ])
+            ->filter(fn ($row) => $row['value'] !== '' || $row['label'] !== '')
+            ->values()
+            ->all();
 
         if ($data['client_id']) {
             $linked = Client::find($data['client_id']);

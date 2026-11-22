@@ -11,8 +11,8 @@
     data-site-header
     class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300 {{ request()->routeIs('home', 'about', 'projects.*', 'insights.*', 'contact') ? 'is-on-dark text-paper' : 'text-ink' }}"
 >
-    <div class="site-container flex h-20 items-center justify-between lg:h-24">
-        <a href="{{ route('home') }}" class="relative z-20 {{ request()->routeIs('home') ? 'nav-brand-active' : '' }}" aria-current="{{ request()->routeIs('home') ? 'page' : 'false' }}">
+    <div class="site-container flex h-16 items-center justify-between lg:h-20">
+        <a href="{{ route('home') }}" class="relative z-20" aria-current="{{ request()->routeIs('home') ? 'page' : 'false' }}">
             <img
                 src="{{ asset('images/brand/logo-white.svg') }}"
                 alt="{{ $site['site_name'] ?? 'Neotelabs' }}"
@@ -33,9 +33,6 @@
                     {{ $link['label'] }}
                 </a>
             @endforeach
-            <a href="{{ route('contact') }}" class="text-[0.95rem] font-medium uppercase tracking-[0.06em] underline underline-offset-8 decoration-1 opacity-90 hover:opacity-100">
-                Let’s build
-            </a>
         </nav>
 
         <button
@@ -67,6 +64,5 @@
                 </a>
             @endforeach
         </nav>
-        <a href="{{ route('contact') }}" class="btn-primary mt-8">Let’s build</a>
     </div>
 </header>

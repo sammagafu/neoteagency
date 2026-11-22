@@ -19,20 +19,20 @@
             <div class="grain absolute inset-0"></div>
         </div>
 
-        <div class="site-container relative flex min-h-[100svh] flex-col justify-end pb-16 pt-32 lg:pb-24 lg:pt-40">
+        <div class="site-container relative flex min-h-[100svh] flex-col justify-end pb-12 pt-28 lg:pb-16 lg:pt-32">
             <p class="wow eyebrow text-paper/70" data-wow-animation="fadeInDown" data-wow-delay="0.05s">
                 {{ $site['site_name'] ?? 'Neotelabs' }}
             </p>
-            <h1 class="wow mt-8 display-xl hero-title text-paper" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
+            <h1 class="wow mt-4 display-xl hero-title text-paper" data-wow-animation="fadeInUp" data-wow-delay="0.1s">
                 We bridge the gap between
                 <span class="hero-word hero-word--a">Products</span>
                 &amp;
                 <span class="hero-word hero-word--b">Customers</span>
             </h1>
-            <p class="wow mt-10 hero-lede text-paper/75" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
+            <p class="wow mt-5 hero-lede text-paper/75" data-wow-animation="fadeInUp" data-wow-delay="0.2s">
                 {{ $site['hero_subheadline'] ?? 'A digital growth partner turning brand ambition into experiences that convert.' }}
             </p>
-            <div class="wow mt-12 flex flex-wrap gap-4" data-wow-animation="fadeInUp" data-wow-delay="0.4s">
+            <div class="wow mt-8 flex flex-wrap gap-4" data-wow-animation="fadeInUp" data-wow-delay="0.3s">
                 <a href="{{ route('contact') }}" class="btn-primary bg-paper text-ink hover:bg-accent hover:text-paper">Start a project</a>
                 <a href="{{ route('projects.index') }}" class="btn-ghost-light">View work</a>
             </div>
@@ -101,6 +101,7 @@
 
         <div class="mt-20 space-y-24">
             @foreach ($projects->take(3) as $index => $project)
+                @php $metrics = $project->resultMetrics(); @endphp
                 <a href="{{ route('projects.show', $project) }}" class="wow group block" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.08 * $index, 2) }}s">
                     <div class="overflow-hidden bg-ink">
                         <img
@@ -110,14 +111,21 @@
                             loading="lazy"
                         >
                     </div>
-                    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                         <div>
-                            <p class="text-xs uppercase tracking-[0.2em] text-mist">
+                            <p class="text-sm uppercase tracking-[0.18em] text-mist">
                                 {{ $project->categories->pluck('name')->join(' / ') ?: 'Project' }}
                             </p>
-                            <h3 class="mt-3 font-display text-3xl font-bold tracking-tight transition group-hover:text-accent sm:text-5xl">{{ $project->title }}</h3>
+                            <h3 class="mt-3 font-display text-3xl font-bold tracking-tight transition group-hover:text-accent sm:text-5xl" style="line-height: 1.12;">{{ $project->title }}</h3>
                         </div>
-                        <span class="text-sm uppercase tracking-[0.16em] text-mist">View case</span>
+                        @if (isset($metrics[0]))
+                            <div class="text-left sm:text-right">
+                                <p class="font-display text-3xl font-bold tracking-tight text-ink">{{ $metrics[0]['value'] }}</p>
+                                <p class="mt-1 text-sm text-mist">{{ $metrics[0]['label'] }}</p>
+                            </div>
+                        @else
+                            <span class="text-sm uppercase tracking-[0.16em] text-mist">View case</span>
+                        @endif
                     </div>
                 </a>
             @endforeach

@@ -19,6 +19,7 @@ class Project extends Model
         'skills',
         'cover',
         'excerpt',
+        'results',
         'content',
         'views',
         'is_featured',
@@ -41,7 +42,25 @@ class Project extends Model
             'auto_weekly_report' => 'boolean',
             'auto_monthly_report' => 'boolean',
             'progress_percent' => 'integer',
+            'results' => 'array',
         ];
+    }
+
+    /**
+     * @return array<int, array{value: string, label: string}>
+     */
+    public function resultMetrics(): array
+    {
+        $results = collect($this->results ?? [])
+            ->filter(fn ($row) => filled($row['value'] ?? null) || filled($row['label'] ?? null))
+            ->map(fn ($row) => [
+                'value' => (string) ($row['value'] ?? ''),
+                'label' => (string) ($row['label'] ?? ''),
+            ])
+            ->values()
+            ->all();
+
+        return $results;
     }
 
     public function clientAccount(): BelongsTo

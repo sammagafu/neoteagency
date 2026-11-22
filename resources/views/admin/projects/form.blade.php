@@ -40,6 +40,25 @@
             <textarea id="excerpt" name="excerpt" rows="2" class="admin-input">{{ old('excerpt', $project->excerpt) }}</textarea>
         </div>
         <div>
+            <label class="admin-label">Results / metrics</label>
+            <p class="mt-1 text-xs text-mist">Shown on the public case study (value + short label).</p>
+            <div class="mt-3 space-y-3">
+                @php
+                    $resultRows = old('results', $project->results ?? []);
+                    $resultRows = array_values(is_array($resultRows) ? $resultRows : []);
+                    while (count($resultRows) < 4) {
+                        $resultRows[] = ['value' => '', 'label' => ''];
+                    }
+                @endphp
+                @foreach ($resultRows as $i => $row)
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <input name="results[{{ $i }}][value]" value="{{ $row['value'] ?? '' }}" placeholder="e.g. +38%" class="admin-input">
+                        <input name="results[{{ $i }}][label]" value="{{ $row['label'] ?? '' }}" placeholder="e.g. Task completion" class="admin-input">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div>
             <label class="admin-label" for="content">Content (HTML allowed)</label>
             <textarea id="content" name="content" rows="10" class="admin-input font-mono text-sm">{{ old('content', $project->content) }}</textarea>
         </div>

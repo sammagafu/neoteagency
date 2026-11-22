@@ -11,25 +11,25 @@
             Don’t be shy,<br><span class="hero-word hero-word--b">say hi!</span>
         </x-slot:title>
         <x-slot:actions>
-            <a href="mailto:{{ $site['email'] ?? 'info@neotelabs.co.tz' }}" class="btn-primary bg-paper text-ink hover:bg-accent hover:text-paper">Email us</a>
-            <a href="tel:{{ preg_replace('/\s+/', '', $site['phone'] ?? '+255788419991') }}" class="btn-ghost-light">Call {{ $site['phone'] ?? '+255 788 419 991' }}</a>
+            <a href="#brief" class="btn-primary bg-paper text-ink hover:bg-accent hover:text-paper">Start a brief</a>
+            <a href="mailto:{{ $site['email'] ?? 'info@neotelabs.co.tz' }}" class="btn-ghost-light">{{ $site['email'] ?? 'info@neotelabs.co.tz' }}</a>
         </x-slot:actions>
     </x-site.page-hero>
 
-    <section class="site-container py-24 lg:py-32">
-        <div class="grid gap-16 lg:grid-cols-12">
-            <div class="wow space-y-12 lg:col-span-4" data-wow-animation="fadeInUp">
+    <section id="brief" class="site-container scroll-mt-28 py-16 lg:py-24">
+        <div class="grid gap-14 lg:grid-cols-12">
+            <div class="wow space-y-10 lg:col-span-4" data-wow-animation="fadeInUp">
                 <div>
                     <p class="eyebrow">Address</p>
-                    <p class="mt-4 body-lg text-ink">{{ $site['address'] ?? '' }}</p>
+                    <p class="mt-3 body-lg text-ink">{{ $site['address'] ?? '' }}</p>
                 </div>
                 <div>
                     <p class="eyebrow">Email</p>
-                    <a href="mailto:{{ $site['email'] ?? '' }}" class="mt-4 block text-xl text-ink underline underline-offset-4 hover:text-accent">{{ $site['email'] ?? '' }}</a>
+                    <a href="mailto:{{ $site['email'] ?? '' }}" class="mt-3 block text-xl text-ink underline underline-offset-4 hover:text-accent">{{ $site['email'] ?? '' }}</a>
                 </div>
                 <div>
                     <p class="eyebrow">Phone</p>
-                    <a href="tel:{{ preg_replace('/\s+/', '', $site['phone'] ?? '') }}" class="mt-4 block text-xl text-ink underline underline-offset-4 hover:text-accent">{{ $site['phone'] ?? '' }}</a>
+                    <a href="tel:{{ preg_replace('/\s+/', '', $site['phone'] ?? '') }}" class="mt-3 block text-xl text-ink underline underline-offset-4 hover:text-accent">{{ $site['phone'] ?? '' }}</a>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                 @endif
 
                 <p class="eyebrow">Project brief</p>
-                <h2 class="mt-6 display-md">Tell us about your project and goals</h2>
+                <h2 class="mt-4 display-md">Tell us about your project and goals</h2>
 
                 <form method="POST" action="{{ route('contact.store') }}" class="mt-12 space-y-10">
                     @csrf

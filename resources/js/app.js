@@ -173,41 +173,51 @@ const initLoader = () => {
     const loader = document.getElementById('site-loader');
     if (!loader) return;
 
-    const progress = loader.querySelector('.site-loader__progress');
+    const counter = loader.querySelector('[data-loader-count]');
     const start = performance.now();
-    const minMs = 900;
+    const minMs = 1100;
     let value = 0;
+    let finished = false;
 
     const setProgress = (next) => {
         value = Math.max(value, Math.min(100, next));
-        if (progress) progress.style.width = `${value}%`;
+        if (counter) counter.textContent = String(Math.round(value));
     };
 
-    setProgress(12);
+    setProgress(8);
 
     const tick = window.setInterval(() => {
-        if (value < 82) setProgress(value + Math.random() * 10);
-    }, 180);
+        if (value < 88) setProgress(value + 4 + Math.random() * 9);
+    }, 90);
 
     const finish = () => {
+        if (finished) return;
+        finished = true;
         window.clearInterval(tick);
-        setProgress(100);
-        const elapsed = performance.now() - start;
-        const wait = Math.max(0, minMs - elapsed);
-        window.setTimeout(() => {
-            loader.classList.add('is-done');
-            document.body.classList.remove('is-loading');
-            loader.setAttribute('aria-busy', 'false');
-            window.setTimeout(() => loader.remove(), 750);
-        }, wait + 120);
+
+        const ramp = () => {
+            if (value < 100) {
+                setProgress(value + 6);
+                window.requestAnimationFrame(ramp);
+                return;
+            }
+            const elapsed = performance.now() - start;
+            const wait = Math.max(0, minMs - elapsed);
+            window.setTimeout(() => {
+                loader.classList.add('is-done');
+                document.body.classList.remove('is-loading');
+                loader.setAttribute('aria-busy', 'false');
+                window.setTimeout(() => loader.remove(), 600);
+            }, wait + 80);
+        };
+        ramp();
     };
 
     if (document.readyState === 'complete') {
         finish();
     } else {
         window.addEventListener('load', finish, { once: true });
-        // Safety: never trap the user if assets hang
-        window.setTimeout(finish, 4000);
+        window.setTimeout(finish, 3500);
     }
 };
 
