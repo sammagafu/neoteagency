@@ -14,11 +14,9 @@
     <div class="site-container flex h-16 items-center justify-between lg:h-20">
         <a href="{{ route('home') }}" class="relative z-20" aria-current="{{ request()->routeIs('home') ? 'page' : 'false' }}">
             <img
-                src="{{ asset('images/brand/logo-white.svg') }}"
+                src="{{ asset('images/brand/logo.svg') }}"
                 alt="{{ $site['site_name'] ?? 'Neotelabs' }}"
                 class="h-7 w-auto sm:h-8"
-                data-logo-light="{{ asset('images/brand/logo-white.svg') }}"
-                data-logo-dark="{{ asset('images/brand/logo.svg') }}"
             >
         </a>
 

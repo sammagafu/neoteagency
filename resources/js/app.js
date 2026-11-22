@@ -109,17 +109,14 @@ const initNav = () => {
     const panel = document.querySelector('[data-nav-panel]');
 
     if (header) {
-        const logo = header.querySelector('img[data-logo-light]');
-        const onDarkHome = header.classList.contains('is-on-dark');
+        const onDark = header.classList.contains('is-on-dark');
         const onScroll = () => {
             const scrolled = window.scrollY > 24;
             header.classList.toggle('is-scrolled', scrolled);
-            if (onDarkHome) {
+            if (onDark) {
+                // Keep brand logo red; only swap nav text contrast when the bar goes paper.
                 header.classList.toggle('text-paper', !scrolled);
                 header.classList.toggle('text-ink', scrolled);
-                if (logo) {
-                    logo.src = scrolled ? logo.dataset.logoDark : logo.dataset.logoLight;
-                }
             }
         };
         onScroll();

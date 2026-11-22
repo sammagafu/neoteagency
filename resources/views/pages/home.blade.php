@@ -15,7 +15,8 @@
             >
                 <source src="{{ asset('videos/hero-loop.mp4') }}" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-ink/35"></div>
+            <div class="absolute inset-0 bg-ink/55"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25"></div>
             <div class="grain absolute inset-0"></div>
         </div>
 

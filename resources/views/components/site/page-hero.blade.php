@@ -12,8 +12,9 @@
 <section {{ $attributes->merge(['class' => 'page-hero relative overflow-hidden '.($dark ? 'bg-ink text-paper' : 'bg-paper text-ink')]) }}>
     @if ($dark)
         <div class="absolute inset-0">
-            <img src="{{ $bg }}" alt="" class="h-full w-full object-cover opacity-50" loading="eager">
-            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/25"></div>
+            <img src="{{ $bg }}" alt="" class="h-full w-full object-cover opacity-45" loading="eager">
+            <div class="absolute inset-0 bg-ink/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/65 to-ink/30"></div>
             <div class="grain absolute inset-0"></div>
         </div>
     @endif
