@@ -3,10 +3,14 @@
     'lede' => '',
     'image' => null,
     'dark' => true,
+    'flush' => false,
 ])
 
 @php
     $bg = $image ?: asset('videos/hero-poster.jpg');
+    $innerPad = $flush
+        ? 'min-h-[52svh] pb-14 pt-14 lg:min-h-[58svh] lg:pb-20 lg:pt-16'
+        : 'min-h-[58svh] pb-10 pt-28 lg:min-h-[64svh] lg:pb-14 lg:pt-32';
 @endphp
 
 <section {{ $attributes->merge(['class' => 'page-hero relative overflow-hidden '.($dark ? 'bg-ink text-paper' : 'bg-paper text-ink')]) }}>
@@ -19,7 +23,7 @@
         </div>
     @endif
 
-    <div class="site-container relative flex min-h-[58svh] flex-col justify-end pb-10 pt-28 lg:min-h-[64svh] lg:pb-14 lg:pt-32">
+    <div class="site-container relative flex flex-col justify-end {{ $innerPad }}">
         @if ($eyebrow !== '')
             <p class="wow eyebrow {{ $dark ? 'text-paper/70' : '' }}" data-wow-animation="fadeInDown">{{ $eyebrow }}</p>
         @endif

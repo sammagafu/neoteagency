@@ -10,7 +10,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-paper text-ink">
-    @include('components.site.header')
+    @unless (!empty($hideNav) || View::hasSection('hideNav'))
+        @include('components.site.header')
+    @endunless
 
     <main>
         @yield('content')
