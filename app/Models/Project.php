@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Project extends Model
 {
     protected $fillable = [
+        'client_id',
         'title',
         'slug',
         'client',
@@ -22,6 +25,11 @@ class Project extends Model
         'is_published',
         'sort_order',
         'published_at',
+        'auto_weekly_report',
+        'auto_monthly_report',
+        'report_summary',
+        'report_status',
+        'progress_percent',
     ];
 
     protected function casts(): array
@@ -30,7 +38,20 @@ class Project extends Model
             'is_featured' => 'boolean',
             'is_published' => 'boolean',
             'published_at' => 'datetime',
+            'auto_weekly_report' => 'boolean',
+            'auto_monthly_report' => 'boolean',
+            'progress_percent' => 'integer',
         ];
+    }
+
+    public function clientAccount(): BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+
+    public function reports(): HasMany
+    {
+        return $this->hasMany(ProjectReport::class);
     }
 
     protected static function booted(): void

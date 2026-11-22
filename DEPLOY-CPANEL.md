@@ -83,11 +83,30 @@ chmod -R 775 storage bootstrap/cache
 
 Ensure the cPanel user owns these directories.
 
-## 6. Admin
+## 6. Cron (required for automatic reports)
+
+In cPanel → Cron Jobs, run Laravel’s scheduler every minute:
+
+```bash
+* * * * * cd /home/USER/neoteagency && /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1
+```
+
+Adjust the PHP path if MultiPHP uses a versioned binary (e.g. `ea-php83`).
+
+This enables:
+
+- **Weekly client reports** — Mondays at 09:00 app timezone
+- **Monthly client reports** — 1st of each month at 09:00
+
+Also configure real SMTP in `.env` (`MAIL_MAILER=smtp`, host, username, password) so report emails leave the server. With `QUEUE_CONNECTION=database`, run a queue worker or use `reports:send-scheduled weekly --sync` / `monthly --sync` if you prefer sync sending from the scheduler (the scheduled commands already dispatch jobs; for shared hosting without a long-running worker, set `QUEUE_CONNECTION=sync` in production).
+
+## 7. Admin
 
 Visit `https://your-domain.com/login` then use `/admin` to manage:
 
-- Projects (case studies)
+- Projects (case studies) + progress notes / auto weekly+monthly toggles
+- Clients (report recipients)
+- Client reports (history + manual send)
 - Insights
 - Services
 - Team members
@@ -100,3 +119,4 @@ Public registration is disabled; create additional users with:
 php artisan tinker
 >>> \App\Models\User::create(['name'=>'Editor','email'=>'editor@neotelabs.com','password'=>bcrypt('strong-password'),'email_verified_at'=>now()]);
 ```
+

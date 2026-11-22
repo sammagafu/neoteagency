@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use Illuminate\Http\RedirectResponse;
@@ -15,16 +16,21 @@ class ProjectController extends Controller
     public function index(): View
     {
         return view('admin.projects.index', [
-            'projects' => Project::with('categories')->latest()->paginate(12),
+            'projects' => Project::with(['categories', 'clientAccount'])->latest()->paginate(12),
         ]);
     }
 
     public function create(): View
     {
         return view('admin.projects.form', [
-            'project' => new Project(['is_published' => true, 'published_at' => now()]),
+            'project' => new Project([
+                'is_published' => true,
+                'published_at' => now(),
+                'progress_percent' => 0,
+            ]),
             'categories' => ProjectCategory::orderBy('name')->get(),
             'selectedCategories' => [],
+            'clients' => Client::active()->get(),
         ]);
     }
 
@@ -42,6 +48,7 @@ class ProjectController extends Controller
             'project' => $project,
             'categories' => ProjectCategory::orderBy('name')->get(),
             'selectedCategories' => $project->categories()->pluck('project_categories.id')->all(),
+            'clients' => Client::active()->get(),
         ]);
     }
 
@@ -64,6 +71,7 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'string', 'max:160'],
+            'client_id' => ['nullable', 'exists:clients,id'],
             'client' => ['nullable', 'string', 'max:120'],
             'skills' => ['nullable', 'string', 'max:200'],
             'excerpt' => ['nullable', 'string', 'max:500'],
@@ -73,6 +81,11 @@ class ProjectController extends Controller
             'is_published' => ['nullable', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'published_at' => ['nullable', 'date'],
+            'auto_weekly_report' => ['nullable', 'boolean'],
+            'auto_monthly_report' => ['nullable', 'boolean'],
+            'report_summary' => ['nullable', 'string'],
+            'report_status' => ['nullable', 'string', 'max:120'],
+            'progress_percent' => ['nullable', 'integer', 'min:0', 'max:100'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['integer', 'exists:project_categories,id'],
         ]);
@@ -80,8 +93,19 @@ class ProjectController extends Controller
         $data['slug'] = Str::slug($data['title']);
         $data['is_featured'] = $request->boolean('is_featured');
         $data['is_published'] = $request->boolean('is_published');
+        $data['auto_weekly_report'] = $request->boolean('auto_weekly_report');
+        $data['auto_monthly_report'] = $request->boolean('auto_monthly_report');
         $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['progress_percent'] = $data['progress_percent'] ?? 0;
         $data['published_at'] = $data['published_at'] ?? now();
+        $data['client_id'] = $data['client_id'] ?: null;
+
+        if ($data['client_id']) {
+            $linked = Client::find($data['client_id']);
+            if ($linked && blank($data['client'] ?? null)) {
+                $data['client'] = $linked->company ?: $linked->name;
+            }
+        }
 
         if ($request->hasFile('cover')) {
             $data['cover'] = $request->file('cover')->store('projects', 'public');

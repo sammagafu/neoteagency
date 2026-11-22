@@ -31,7 +31,20 @@ php artisan serve
 
 ## What admins can manage
 
-Projects, insights, services, team, contact messages, categories, and site-wide settings (hero copy, contact info, social links).
+Projects, insights, services, team, contact messages, categories, site-wide settings, **clients**, and **project reports**.
+
+### Automatic client reports
+
+1. Create a client under Admin → Clients.
+2. Attach the client to a project and enable **Auto weekly** / **Auto monthly**.
+3. Keep **progress notes** updated — they feed the email body.
+4. On cPanel, add the Laravel scheduler cron (see `DEPLOY-CPANEL.md`).
+
+Manual send is available from Admin → Reports or the project edit screen.
+
+### Motion
+
+The public site uses WOW-style scroll animations (Animate.css) and parallax hero layers.
 
 ## cPanel
 

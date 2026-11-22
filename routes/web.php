@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InsightCategoryController as AdminInsightCategoryController;
 use App\Http\Controllers\Admin\InsightController as AdminInsightController;
 use App\Http\Controllers\Admin\ProjectCategoryController as AdminProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\ProjectReportController as AdminProjectReportController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamController;
@@ -36,6 +38,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/', DashboardController::class)->name('dashboard');
 
     Route::resource('projects', AdminProjectController::class)->except(['show']);
+    Route::resource('clients', AdminClientController::class)->except(['show']);
+    Route::resource('reports', AdminProjectReportController::class)->except(['edit', 'update']);
+    Route::post('reports/{report}/send', [AdminProjectReportController::class, 'send'])->name('reports.send');
+    Route::post('projects/{project}/send-report', [AdminProjectReportController::class, 'sendProjectNow'])->name('projects.send-report');
+
     Route::resource('insights', AdminInsightController::class)->except(['show']);
     Route::resource('team', AdminTeamController::class)->except(['show']);
     Route::resource('services', AdminServiceController::class)->except(['show']);

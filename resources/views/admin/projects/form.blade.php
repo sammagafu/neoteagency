@@ -15,13 +15,25 @@
         </div>
         <div class="grid gap-4 sm:grid-cols-2">
             <div>
-                <label class="admin-label" for="client">Client</label>
-                <input id="client" name="client" value="{{ old('client', $project->client) }}" class="admin-input">
+                <label class="admin-label" for="client_id">Client account</label>
+                <select id="client_id" name="client_id" class="admin-input">
+                    <option value="">— None —</option>
+                    @foreach ($clients as $client)
+                        <option value="{{ $client->id }}" @selected((string) old('client_id', $project->client_id) === (string) $client->id)>
+                            {{ $client->displayName() }} · {{ $client->email }}
+                        </option>
+                    @endforeach
+                </select>
+                <p class="mt-1 text-xs text-mist">Required for automatic weekly/monthly reports.</p>
             </div>
             <div>
-                <label class="admin-label" for="skills">Skills</label>
-                <input id="skills" name="skills" value="{{ old('skills', $project->skills) }}" class="admin-input">
+                <label class="admin-label" for="client">Client label (public)</label>
+                <input id="client" name="client" value="{{ old('client', $project->client) }}" class="admin-input">
             </div>
+        </div>
+        <div>
+            <label class="admin-label" for="skills">Skills</label>
+            <input id="skills" name="skills" value="{{ old('skills', $project->skills) }}" class="admin-input">
         </div>
         <div>
             <label class="admin-label" for="excerpt">Excerpt</label>
@@ -50,6 +62,29 @@
                 @endforeach
             </div>
         </div>
+
+        <div class="rounded-2xl border border-accent/20 bg-accent-soft/40 p-4 space-y-4">
+            <p class="font-display text-base font-semibold text-ink">Client reporting</p>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <label class="admin-label" for="report_status">Current status</label>
+                    <input id="report_status" name="report_status" value="{{ old('report_status', $project->report_status) }}" placeholder="In progress / QA / Launched" class="admin-input">
+                </div>
+                <div>
+                    <label class="admin-label" for="progress_percent">Progress %</label>
+                    <input id="progress_percent" name="progress_percent" type="number" min="0" max="100" value="{{ old('progress_percent', $project->progress_percent ?? 0) }}" class="admin-input">
+                </div>
+            </div>
+            <div>
+                <label class="admin-label" for="report_summary">Latest progress notes</label>
+                <textarea id="report_summary" name="report_summary" rows="4" class="admin-input" placeholder="What shipped this period, blockers, next steps…">{{ old('report_summary', $project->report_summary) }}</textarea>
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <label class="inline-flex items-center gap-2 text-sm"><input type="checkbox" name="auto_weekly_report" value="1" @checked(old('auto_weekly_report', $project->auto_weekly_report))> Auto weekly report (Mondays 09:00)</label>
+                <label class="inline-flex items-center gap-2 text-sm"><input type="checkbox" name="auto_monthly_report" value="1" @checked(old('auto_monthly_report', $project->auto_monthly_report))> Auto monthly report (1st 09:00)</label>
+            </div>
+        </div>
+
         <div class="grid gap-4 sm:grid-cols-3">
             <div>
                 <label class="admin-label" for="sort_order">Sort order</label>
@@ -70,4 +105,11 @@
             <a href="{{ route('admin.projects.index') }}" class="btn-secondary">Cancel</a>
         </div>
     </form>
+
+    @if ($project->exists && $project->client_id)
+        <form method="POST" action="{{ route('admin.projects.send-report', $project) }}" class="mt-4 max-w-3xl">
+            @csrf
+            <button class="btn-secondary" type="submit">Send report now to client</button>
+        </form>
+    @endif
 @endsection

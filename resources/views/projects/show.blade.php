@@ -6,18 +6,20 @@
 @section('content')
     <article>
         <section class="relative min-h-[65vh] overflow-hidden pt-28">
-            <div class="absolute inset-0">
-                <img src="{{ $project->coverUrl() }}" alt="" class="h-full w-full object-cover">
+            <div class="parallax-frame">
+                <div class="parallax-layer" data-parallax="0.26">
+                    <img src="{{ $project->coverUrl() }}" alt="">
+                </div>
                 <div class="absolute inset-0 bg-ink/65"></div>
             </div>
             <div class="site-container relative flex min-h-[65vh] flex-col justify-end pb-14">
-                <p class="reveal text-xs uppercase tracking-[0.25em] text-accent">
+                <p class="wow text-xs uppercase tracking-[0.25em] text-accent" data-wow-animation="fadeInDown">
                     {{ $project->categories->pluck('name')->join(' · ') }}
                 </p>
-                <h1 class="reveal reveal-delay-1 mt-4 max-w-4xl font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl">
+                <h1 class="wow mt-4 max-w-4xl font-display text-4xl font-bold tracking-tight text-paper sm:text-6xl" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
                     {{ $project->title }}
                 </h1>
-                <div class="reveal reveal-delay-2 mt-6 flex flex-wrap gap-6 text-sm text-paper/70">
+                <div class="wow mt-6 flex flex-wrap gap-6 text-sm text-paper/70" data-wow-animation="fadeInUp" data-wow-delay="0.24s">
                     @if ($project->client)<span>Client · {{ $project->client }}</span>@endif
                     @if ($project->skills)<span>Skills · {{ $project->skills }}</span>@endif
                 </div>

@@ -22,6 +22,8 @@
                     $nav = [
                         ['Dashboard', 'admin.dashboard', 'admin.dashboard'],
                         ['Projects', 'admin.projects.index', 'admin.projects.*'],
+                        ['Clients', 'admin.clients.index', 'admin.clients.*'],
+                        ['Reports', 'admin.reports.index', 'admin.reports.*'],
                         ['Insights', 'admin.insights.index', 'admin.insights.*'],
                         ['Services', 'admin.services.index', 'admin.services.*'],
                         ['Team', 'admin.team.index', 'admin.team.*'],

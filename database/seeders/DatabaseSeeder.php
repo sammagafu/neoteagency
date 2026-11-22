@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\Insight;
 use App\Models\InsightCategory;
 use App\Models\Project;
@@ -80,13 +81,22 @@ class DatabaseSeeder extends Seeder
         $branding = ProjectCategory::query()->firstOrCreate(['name' => 'Branding']);
         $illustration = ProjectCategory::query()->firstOrCreate(['name' => 'Illustration']);
 
+        $tasklyClient = Client::query()->updateOrCreate(
+            ['email' => 'hello@taskly.example'],
+            ['name' => 'Amina Okello', 'company' => 'Taskly', 'phone' => '+255700000001', 'is_active' => true]
+        );
+        $cityArtsClient = Client::query()->updateOrCreate(
+            ['email' => 'ops@cityarts.example'],
+            ['name' => 'James Mushi', 'company' => 'City Arts', 'phone' => '+255700000002', 'is_active' => true]
+        );
+
         $projects = [
-            ['title' => 'Taskly Dashboard', 'client' => 'Taskly', 'skills' => 'UI/UX, Product Design', 'cover' => 'images/portfolio/work-1.png', 'categories' => [$uiux->id], 'featured' => true],
-            ['title' => 'Film & Art Festival', 'client' => 'City Arts', 'skills' => 'Product, Branding', 'cover' => 'images/portfolio/work-2.png', 'categories' => [$product->id], 'featured' => true],
-            ['title' => 'Dark Wishky Wine', 'client' => 'Wishky', 'skills' => 'Branding, Packaging', 'cover' => 'images/portfolio/work-3.png', 'categories' => [$branding->id], 'featured' => true],
-            ['title' => 'Swiss Style Poster', 'client' => 'Studio Swiss', 'skills' => 'Illustration', 'cover' => 'images/portfolio/work-4.png', 'categories' => [$illustration->id], 'featured' => false],
-            ['title' => 'Liarch Architecture Firm', 'client' => 'Liarch', 'skills' => 'UI/UX, Web', 'cover' => 'images/portfolio/work-5.png', 'categories' => [$uiux->id], 'featured' => false],
-            ['title' => 'FG Print Brand', 'client' => 'FG Print', 'skills' => 'Branding, Motion', 'cover' => 'images/portfolio/work-6.png', 'categories' => [$branding->id], 'featured' => false],
+            ['title' => 'Taskly Dashboard', 'client' => 'Taskly', 'client_id' => $tasklyClient->id, 'skills' => 'UI/UX, Product Design', 'cover' => 'images/portfolio/work-1.png', 'categories' => [$uiux->id], 'featured' => true, 'weekly' => true, 'monthly' => true, 'progress' => 72, 'status' => 'In progress', 'summary' => 'Shipped the analytics widgets and tightened mobile navigation. Next: onboarding flow QA.'],
+            ['title' => 'Film & Art Festival', 'client' => 'City Arts', 'client_id' => $cityArtsClient->id, 'skills' => 'Product, Branding', 'cover' => 'images/portfolio/work-2.png', 'categories' => [$product->id], 'featured' => true, 'weekly' => true, 'monthly' => false, 'progress' => 55, 'status' => 'Design review', 'summary' => 'Festival landing page and ticketing UX locked. Content migration starts next week.'],
+            ['title' => 'Dark Wishky Wine', 'client' => 'Wishky', 'client_id' => null, 'skills' => 'Branding, Packaging', 'cover' => 'images/portfolio/work-3.png', 'categories' => [$branding->id], 'featured' => true, 'weekly' => false, 'monthly' => false, 'progress' => 100, 'status' => 'Launched', 'summary' => 'Brand system delivered and signed off.'],
+            ['title' => 'Swiss Style Poster', 'client' => 'Studio Swiss', 'client_id' => null, 'skills' => 'Illustration', 'cover' => 'images/portfolio/work-4.png', 'categories' => [$illustration->id], 'featured' => false, 'weekly' => false, 'monthly' => false, 'progress' => 40, 'status' => 'In progress', 'summary' => null],
+            ['title' => 'Liarch Architecture Firm', 'client' => 'Liarch', 'client_id' => null, 'skills' => 'UI/UX, Web', 'cover' => 'images/portfolio/work-5.png', 'categories' => [$uiux->id], 'featured' => false, 'weekly' => false, 'monthly' => false, 'progress' => 30, 'status' => 'Discovery', 'summary' => null],
+            ['title' => 'FG Print Brand', 'client' => 'FG Print', 'client_id' => null, 'skills' => 'Branding, Motion', 'cover' => 'images/portfolio/work-6.png', 'categories' => [$branding->id], 'featured' => false, 'weekly' => false, 'monthly' => false, 'progress' => 20, 'status' => 'Kickoff', 'summary' => null],
         ];
 
         foreach ($projects as $index => $item) {
@@ -95,6 +105,7 @@ class DatabaseSeeder extends Seeder
                 [
                     'title' => $item['title'],
                     'client' => $item['client'],
+                    'client_id' => $item['client_id'],
                     'skills' => $item['skills'],
                     'cover' => $item['cover'],
                     'excerpt' => 'Creativity is at the heart of this engagement — strategy, design, and craft working as one.',
@@ -103,6 +114,11 @@ class DatabaseSeeder extends Seeder
                     'is_published' => true,
                     'sort_order' => $index + 1,
                     'published_at' => now()->subDays(30 - $index),
+                    'auto_weekly_report' => $item['weekly'],
+                    'auto_monthly_report' => $item['monthly'],
+                    'progress_percent' => $item['progress'],
+                    'report_status' => $item['status'],
+                    'report_summary' => $item['summary'],
                 ]
             );
             $project->categories()->sync($item['categories']);

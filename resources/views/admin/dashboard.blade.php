@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('heading', 'Dashboard')
-@section('subheading', 'Manage Neotelabs content and enquiries')
+@section('subheading', 'Manage Neotelabs content, clients, and project reports')
 
 @section('content')
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         @foreach ([
             ['Projects', $stats['projects'], route('admin.projects.index')],
-            ['Insights', $stats['insights'], route('admin.insights.index')],
+            ['Clients', $stats['clients'], route('admin.clients.index')],
+            ['Reports sent', $stats['reports'], route('admin.reports.index')],
             ['Unread messages', $stats['messages'], route('admin.messages.index')],
-            ['Active team', $stats['team'], route('admin.team.index')],
         ] as [$label, $value, $url])
             <a href="{{ $url }}" class="admin-card transition hover:border-accent/40">
                 <p class="text-xs font-semibold uppercase tracking-[0.18em] text-mist">{{ $label }}</p>
@@ -18,7 +18,7 @@
         @endforeach
     </div>
 
-    <div class="mt-8 grid gap-6 lg:grid-cols-2">
+    <div class="mt-8 grid gap-6 lg:grid-cols-3">
         <div class="admin-card">
             <div class="mb-4 flex items-center justify-between">
                 <h2 class="font-display text-lg font-semibold">Recent messages</h2>
@@ -57,6 +57,23 @@
                     </a>
                 @empty
                     <p class="text-sm text-mist">No projects yet.</p>
+                @endforelse
+            </div>
+        </div>
+
+        <div class="admin-card">
+            <div class="mb-4 flex items-center justify-between">
+                <h2 class="font-display text-lg font-semibold">Recent reports</h2>
+                <a href="{{ route('admin.reports.create') }}" class="text-sm text-accent">Send report</a>
+            </div>
+            <div class="space-y-3">
+                @forelse ($recentReports as $report)
+                    <a href="{{ route('admin.reports.show', $report) }}" class="block rounded-xl border border-ink/5 px-3 py-3 hover:bg-paper">
+                        <p class="font-medium text-ink">{{ $report->project?->title }}</p>
+                        <p class="text-sm text-mist">{{ $report->periodLabel() }} · {{ ucfirst($report->status) }}</p>
+                    </a>
+                @empty
+                    <p class="text-sm text-mist">No reports yet.</p>
                 @endforelse
             </div>
         </div>
