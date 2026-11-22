@@ -9,7 +9,8 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/brand/favicon.svg') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-paper text-ink">
+<body class="min-h-screen bg-paper text-ink is-loading">
+    @include('components.site.loader')
     @include('components.site.header')
 
     <main>

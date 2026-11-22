@@ -1,9 +1,9 @@
 @php
     $links = [
-        ['label' => 'Work', 'route' => 'projects.index'],
-        ['label' => 'About', 'route' => 'about'],
-        ['label' => 'Insights', 'route' => 'insights.index'],
-        ['label' => 'Contact', 'route' => 'contact'],
+        ['label' => 'Work', 'route' => 'projects.index', 'active' => 'projects.*'],
+        ['label' => 'About', 'route' => 'about', 'active' => 'about'],
+        ['label' => 'Insights', 'route' => 'insights.index', 'active' => 'insights.*'],
+        ['label' => 'Contact', 'route' => 'contact', 'active' => 'contact'],
     ];
 @endphp
 
@@ -12,7 +12,7 @@
     class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300 {{ request()->routeIs('home') ? 'is-on-dark text-paper' : 'text-ink' }}"
 >
     <div class="site-container flex h-20 items-center justify-between lg:h-24">
-        <a href="{{ route('home') }}" class="relative z-20">
+        <a href="{{ route('home') }}" class="relative z-20 {{ request()->routeIs('home') ? 'nav-brand-active' : '' }}" aria-current="{{ request()->routeIs('home') ? 'page' : 'false' }}">
             <img
                 src="{{ asset(request()->routeIs('home') ? 'images/brand/logo-white.svg' : 'images/brand/logo.svg') }}"
                 alt="{{ $site['site_name'] ?? 'Neotelabs' }}"
@@ -22,16 +22,13 @@
             >
         </a>
 
-        <nav class="hidden items-center gap-10 lg:flex">
+        <nav class="hidden items-center gap-10 lg:flex" aria-label="Primary">
             @foreach ($links as $link)
-                @php
-                    $isActive = request()->routeIs($link['route'])
-                        || (str_starts_with($link['route'], 'projects') && request()->routeIs('projects.*'))
-                        || (str_starts_with($link['route'], 'insights') && request()->routeIs('insights.*'));
-                @endphp
+                @php $isActive = request()->routeIs($link['active']); @endphp
                 <a
                     href="{{ route($link['route']) }}"
-                    class="text-[13px] font-medium tracking-[0.08em] uppercase transition opacity-80 hover:opacity-100 {{ $isActive ? 'opacity-100' : '' }}"
+                    @if ($isActive) aria-current="page" @endif
+                    class="nav-link text-[13px] font-medium tracking-[0.08em] uppercase transition {{ $isActive ? 'is-active' : '' }}"
                 >
                     {{ $link['label'] }}
                 </a>
@@ -57,10 +54,15 @@
     </div>
 
     <div data-nav-panel class="fixed inset-0 z-10 hidden flex-col bg-paper px-6 pb-10 pt-28 text-ink lg:hidden">
-        <nav class="flex flex-1 flex-col gap-1">
-            <a href="{{ route('home') }}" class="border-b border-ink/10 py-5 font-display text-4xl font-bold tracking-tight">Home</a>
+        <nav class="flex flex-1 flex-col gap-1" aria-label="Mobile">
+            <a href="{{ route('home') }}" class="border-b border-ink/10 py-5 font-display text-4xl font-bold tracking-tight {{ request()->routeIs('home') ? 'text-accent' : '' }}" @if(request()->routeIs('home')) aria-current="page" @endif>Home</a>
             @foreach ($links as $link)
-                <a href="{{ route($link['route']) }}" class="border-b border-ink/10 py-5 font-display text-4xl font-bold tracking-tight">
+                @php $isActive = request()->routeIs($link['active']); @endphp
+                <a
+                    href="{{ route($link['route']) }}"
+                    @if ($isActive) aria-current="page" @endif
+                    class="border-b border-ink/10 py-5 font-display text-4xl font-bold tracking-tight {{ $isActive ? 'text-accent' : '' }}"
+                >
                     {{ $link['label'] }}
                 </a>
             @endforeach

@@ -23,10 +23,13 @@
             <p class="wow eyebrow text-paper/70" data-wow-animation="fadeInDown" data-wow-delay="0.05s">
                 {{ $site['site_name'] ?? 'Neotelabs' }}
             </p>
-            <h1 class="wow mt-8 max-w-6xl display-xl text-paper" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
-                {{ $site['hero_headline'] ?? 'We bridge the gap between products and customers' }}
+            <h1 class="wow mt-8 display-xl hero-title text-paper" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
+                We bridge the gap between
+                <span class="hero-word hero-word--a">Products</span>
+                &amp;
+                <span class="hero-word hero-word--b">Customers</span>
             </h1>
-            <p class="wow mt-8 max-w-md text-base font-light leading-relaxed text-paper/70 sm:text-lg" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
+            <p class="wow mt-8 hero-lede text-base font-light text-paper/70 sm:text-lg" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
                 {{ $site['hero_subheadline'] ?? 'A digital growth partner turning brand ambition into experiences that convert.' }}
             </p>
             <div class="wow mt-12 flex flex-wrap gap-4" data-wow-animation="fadeInUp" data-wow-delay="0.4s">
