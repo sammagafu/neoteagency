@@ -30,42 +30,98 @@ class DatabaseSeeder extends Seeder
         SiteSetting::setMany([
             'site_name' => 'Neotelabs',
             'tagline' => 'We innovate',
-            'hero_headline' => 'We narrow the gap between Products & Customers',
-            'hero_subheadline' => 'A digital studio in Dar es Salaam crafting strategy, brand, and technology that moves markets.',
-            'about_blurb' => 'We are a digital service agency. We are a young and creative team dedicated to raise the bar of your product just a bit higher to the top position in the market.',
-            'email' => 'info@neotelabs.com',
-            'phone' => '+255766328259',
-            'address' => 'Warioba streets, Mwai Kibaki road. Dar es Salaam, Tanzania',
+            'hero_headline' => 'We bridge the gap between products and customers',
+            'hero_subheadline' => 'A digital growth partner turning brand ambition into experiences that convert.',
+            'about_blurb' => 'We are a young and creative team dedicated to raise the bar of your product just a bit higher to the top position in the market.',
+            'email' => 'info@neotelabs.co.tz',
+            'phone' => '+255 788 419 991',
+            'address' => '4th floor, Tiger Tower, Kinondoni Manyanya, Dar es Salaam — Tanzania',
             'twitter' => 'https://twitter.com',
             'facebook' => 'https://facebook.com',
             'instagram' => 'https://instagram.com',
             'linkedin' => 'https://linkedin.com',
         ]);
 
+        // Replace legacy service set with company-profile capabilities
+        Service::query()->delete();
+
         $services = [
             [
                 'title' => 'Strategy',
-                'description' => 'Clarity before craft. We align goals, audience, and offer so every decision has direction.',
-                'items' => ['Goal Alignment', 'Product Positioning', 'Target Audience', 'Value Proposition / USP', 'Customer Road Map', 'Online Marketing Strategy'],
+                'description' => 'Market clarity, positioning, and growth systems that set direction before craft begins.',
+                'items' => [
+                    'Market Research and Analysis',
+                    'Marketing Strategy Development',
+                    'Consumer Behavior Insights',
+                    'Product Positioning',
+                    'Value Proposition / USP',
+                    'Customer Road Map',
+                    'Online Marketing Strategy',
+                ],
                 'sort_order' => 1,
             ],
             [
                 'title' => 'Branding & Design',
-                'description' => 'Visual systems and product experiences that feel inevitable for your brand.',
-                'items' => ['Brand Identity', 'Graphic Design', 'Product Design', 'UI & UX Design', 'Customer Experience Design'],
+                'description' => 'Brand systems and experiences that feel inevitable across every touchpoint.',
+                'items' => [
+                    'Marketing Collateral',
+                    'Branding Materials',
+                    'Packaging Design',
+                    'Advertisements',
+                    'UI & UX Design',
+                    'Customer Experience Design',
+                ],
                 'sort_order' => 2,
             ],
             [
                 'title' => 'Technology',
-                'description' => 'Robust, maintainable builds with performance and craft baked in from day one.',
-                'items' => ['Technical Strategy', 'Full-Stack Development', 'Quality Assurance', 'Interactive Prototyping', 'Applications Development'],
+                'description' => 'Full-stack builds, prototypes, and platforms engineered for performance and scale.',
+                'items' => [
+                    'Technical Strategy',
+                    'Full-Stack Development',
+                    'Quality Assurance',
+                    'Interactive Prototyping',
+                    'Tech Support and Maintenance',
+                    'Applications Development',
+                    'Cloud Computing & Cybersecurity',
+                ],
                 'sort_order' => 3,
             ],
             [
-                'title' => 'Content Creations',
-                'description' => 'Stories and channels that earn attention and keep customers coming back.',
-                'items' => ['Content strategy', 'Social Media Channels', 'Copywriting', 'Story Telling'],
+                'title' => 'Content Creation',
+                'description' => 'Stories, video, and channels that earn attention and keep audiences coming back.',
+                'items' => [
+                    'Video Content Creation',
+                    'Scriptwriting',
+                    'Editing and Post-production',
+                    'Animations',
+                    'Content Strategy',
+                    'Podcasts',
+                ],
                 'sort_order' => 4,
+            ],
+            [
+                'title' => 'Events & Experience',
+                'description' => 'Live and virtual moments designed for engagement, promotion, and lasting impact.',
+                'items' => [
+                    'Webinar Planning and Execution',
+                    'Virtual Event Management',
+                    'Promotion and Audience Engagement',
+                    'Event Management',
+                ],
+                'sort_order' => 5,
+            ],
+            [
+                'title' => 'Public Relations',
+                'description' => 'Reputation, media, and narrative systems that keep brands trusted and visible.',
+                'items' => [
+                    'Media Relations',
+                    'Press Releases',
+                    'Crisis Communication',
+                    'Event Promotion',
+                    'Reputation Management',
+                ],
+                'sort_order' => 6,
             ],
         ];
 

@@ -4,6 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Ample Soft Pro';
+    src: url('/fonts/ample-soft-pro/AmpleSoftPro-Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ample Soft Pro';
+    src: url('/fonts/ample-soft-pro/AmpleSoftPro-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ample Soft Pro';
+    src: url('/fonts/ample-soft-pro/AmpleSoftPro-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ample Soft Pro';
+    src: url('/fonts/ample-soft-pro/AmpleSoftPro-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ample Soft Pro';
+    src: url('/fonts/ample-soft-pro/AmpleSoftPro-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ample Soft Pro';
+    src: url('/fonts/ample-soft-pro/AmpleSoftPro-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -11,29 +59,58 @@
 
     body {
         @apply bg-paper text-ink font-sans antialiased;
-        background-image:
-            radial-gradient(ellipse 80% 50% at 10% -10%, rgba(15, 158, 168, 0.12), transparent 55%),
-            radial-gradient(ellipse 60% 40% at 100% 0%, rgba(28, 36, 48, 0.06), transparent 50%),
-            linear-gradient(180deg, #f4f6f8 0%, #eef1f4 40%, #e9eef2 100%);
-        background-attachment: fixed;
+        background-color: #f7f7f5;
+        background-image: none;
     }
 
     ::selection {
-        background: rgba(15, 158, 168, 0.28);
+        background: rgba(10, 10, 10, 0.14);
     }
 }
 
 @layer components {
     .site-container {
-        @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+        @apply mx-auto w-full max-w-[92rem] px-6 sm:px-10 lg:px-14;
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition duration-300 hover:bg-accent;
+        @apply inline-flex items-center justify-center rounded-none bg-ink px-7 py-4 text-sm font-medium tracking-wide text-paper transition duration-300 hover:bg-accent;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/60 px-6 py-3 text-sm font-semibold text-ink backdrop-blur transition duration-300 hover:border-accent hover:text-accent;
+        @apply inline-flex items-center justify-center rounded-none border border-ink/20 bg-transparent px-7 py-4 text-sm font-medium tracking-wide text-ink transition duration-300 hover:border-ink hover:bg-ink hover:text-paper;
+    }
+
+    .btn-ghost-light {
+        @apply inline-flex items-center justify-center rounded-none border border-paper/35 bg-transparent px-7 py-4 text-sm font-medium tracking-wide text-paper transition duration-300 hover:border-paper hover:bg-paper hover:text-ink;
+    }
+
+    .display-xl {
+        font-family: 'Ample Soft Pro', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.045em;
+        line-height: 0.9;
+        font-size: clamp(3.25rem, 11vw, 9.5rem);
+    }
+
+    .display-lg {
+        font-family: 'Ample Soft Pro', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        font-size: clamp(2.5rem, 7vw, 6rem);
+    }
+
+    .display-md {
+        font-family: 'Ample Soft Pro', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1;
+        font-size: clamp(2rem, 4.5vw, 3.75rem);
+    }
+
+    .eyebrow {
+        @apply text-[11px] font-medium uppercase tracking-[0.28em] text-mist;
     }
 
     .admin-input {
@@ -56,10 +133,10 @@
 
     .reveal {
         opacity: 0;
-        transform: translateY(28px);
+        transform: translateY(36px);
         transition:
-            opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 1s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reveal.is-visible {
@@ -84,7 +161,7 @@
         pointer-events: none;
         position: absolute;
         inset: 0;
-        opacity: 0.28;
+        opacity: 0.22;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
         mix-blend-mode: soft-light;
     }
@@ -99,7 +176,7 @@
 
     .prose-site h2,
     .prose-site h3 {
-        @apply mb-3 mt-8 font-display font-semibold text-ink;
+        @apply mb-3 mt-8 font-display font-bold text-ink;
     }
 
     [data-nav-panel].is-open {
@@ -107,7 +184,11 @@
     }
 
     [data-site-header].is-scrolled {
-        @apply border-ink/10 bg-paper/90 shadow-sm backdrop-blur-xl;
+        @apply border-ink/10 bg-paper/90 shadow-none backdrop-blur-xl;
+    }
+
+    [data-site-header].is-scrolled.is-on-dark {
+        @apply border-ink/10 bg-paper/90 text-ink;
     }
 
     .parallax-frame {
@@ -124,8 +205,17 @@
         backface-visibility: hidden;
     }
 
-    .parallax-layer img {
+    .parallax-layer img,
+    .parallax-layer video {
         @apply h-full w-full object-cover;
+    }
+
+    .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .wow {
@@ -142,6 +232,9 @@
             inset: 0;
             height: 100%;
         }
+
+        .hero-video {
+            animation: none;
+        }
     }
 }
-

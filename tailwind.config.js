@@ -14,23 +14,23 @@ export default {
         extend: {
             colors: {
                 ink: {
-                    DEFAULT: '#10141a',
-                    soft: '#1c2430',
+                    DEFAULT: '#0a0a0a',
+                    soft: '#1a1a1a',
                 },
                 paper: {
-                    DEFAULT: '#eef1f4',
-                    deep: '#e2e7ed',
+                    DEFAULT: '#f7f7f5',
+                    deep: '#ecece8',
                 },
-                mist: '#6b7583',
+                mist: '#6f6f6c',
                 accent: {
-                    DEFAULT: '#0f9ea8',
-                    deep: '#0b7f87',
-                    soft: '#d7f3f5',
+                    DEFAULT: '#e23b1c',
+                    deep: '#b92d14',
+                    soft: '#fde8e3',
                 },
             },
             fontFamily: {
-                sans: ['Manrope', ...defaultTheme.fontFamily.sans],
-                display: ['Syne', ...defaultTheme.fontFamily.sans],
+                sans: ['Ample Soft Pro', ...defaultTheme.fontFamily.sans],
+                display: ['Ample Soft Pro', ...defaultTheme.fontFamily.sans],
             },
             maxWidth: {
                 '7xl': '80rem',

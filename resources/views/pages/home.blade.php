@@ -1,167 +1,190 @@
 @extends('layouts.site')
 
 @section('content')
-    {{-- Hero: brand-first, full-bleed, parallax --}}
-    <section class="relative min-h-[100svh] overflow-hidden">
-        <div class="parallax-frame">
-            <div class="parallax-layer" data-parallax="0.28">
-                <img
-                    src="{{ asset('images/neote/team.jpg') }}"
-                    alt="Neotelabs studio atmosphere"
-                >
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/25"></div>
+    {{-- Hero: brand + one headline + one line + CTA + full-bleed video --}}
+    <section class="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
+        <div class="absolute inset-0">
+            <video
+                class="hero-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="{{ asset('videos/hero-poster.jpg') }}"
+            >
+                <source src="{{ asset('videos/hero-loop.mp4') }}" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-ink/35"></div>
             <div class="grain absolute inset-0"></div>
         </div>
 
         <div class="site-container relative flex min-h-[100svh] flex-col justify-end pb-16 pt-32 lg:pb-24 lg:pt-40">
-            <p class="wow font-display text-sm font-semibold uppercase tracking-[0.35em] text-accent" data-wow-animation="fadeInDown" data-wow-delay="0.05s">
+            <p class="wow eyebrow text-paper/70" data-wow-animation="fadeInDown" data-wow-delay="0.05s">
                 {{ $site['site_name'] ?? 'Neotelabs' }}
             </p>
-            <h1 class="wow mt-5 max-w-5xl font-display text-5xl font-bold leading-[0.95] tracking-tight text-paper text-balance sm:text-6xl lg:text-8xl" data-wow-animation="fadeInUp" data-wow-delay="0.15s">
-                {{ $site['hero_headline'] ?? 'We narrow the gap between Products & Customers' }}
+            <h1 class="wow mt-8 max-w-6xl display-xl text-paper" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
+                {{ $site['hero_headline'] ?? 'We bridge the gap between products and customers' }}
             </h1>
-            <p class="wow mt-6 max-w-xl text-base leading-relaxed text-paper/75 sm:text-lg" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
-                {{ $site['hero_subheadline'] ?? 'A digital studio in Dar es Salaam crafting strategy, brand, and technology that moves markets.' }}
+            <p class="wow mt-8 max-w-md text-base font-light leading-relaxed text-paper/70 sm:text-lg" data-wow-animation="fadeInUp" data-wow-delay="0.28s">
+                {{ $site['hero_subheadline'] ?? 'A digital growth partner turning brand ambition into experiences that convert.' }}
             </p>
-            <div class="wow mt-10 flex flex-wrap gap-3" data-wow-animation="fadeInUp" data-wow-delay="0.4s">
+            <div class="wow mt-12 flex flex-wrap gap-4" data-wow-animation="fadeInUp" data-wow-delay="0.4s">
                 <a href="{{ route('contact') }}" class="btn-primary bg-paper text-ink hover:bg-accent hover:text-paper">Start a project</a>
-                <a href="{{ route('projects.index') }}" class="btn-secondary border-paper/25 bg-transparent text-paper hover:border-accent hover:text-accent">View case studies</a>
+                <a href="{{ route('projects.index') }}" class="btn-ghost-light">View work</a>
             </div>
         </div>
     </section>
 
-    {{-- What we do --}}
-    <section class="site-container py-24 lg:py-32">
-        <div class="wow max-w-3xl" data-wow-animation="fadeInUp">
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Capabilities</p>
-            <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">What we do</h2>
-            <p class="mt-4 text-lg text-mist">Four disciplines. One outcome — products and brands that feel inevitable.</p>
-        </div>
-
-        <div class="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-            @foreach ($services as $index => $service)
-                <div class="wow border-t border-ink/15 pt-6" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.08 * $index, 2) }}s">
-                    <p class="font-display text-sm text-accent">0{{ $index + 1 }}</p>
-                    <h3 class="mt-3 font-display text-2xl font-semibold text-ink">{{ $service->title }}</h3>
-                    <p class="mt-3 text-sm leading-relaxed text-mist">{{ $service->description }}</p>
-                    @if ($service->items)
-                        <ul class="mt-6 space-y-2">
-                            @foreach ($service->items as $item)
-                                <li class="text-sm text-ink/80">{{ $item }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-            @endforeach
+    {{-- Intro --}}
+    <section class="site-container py-28 lg:py-40">
+        <div class="wow max-w-5xl" data-wow-animation="fadeInUp">
+            <p class="eyebrow">Digital growth partner</p>
+            <h2 class="mt-8 display-lg text-balance">
+                Great products deserve exceptional experiences — online, offline, and everywhere between.
+            </h2>
+            <p class="mt-10 max-w-2xl text-lg font-light leading-relaxed text-mist">
+                We blend strategic innovation with proven expertise to drive results that extend beyond the digital realm. Setting standards — not just meeting them.
+            </p>
         </div>
     </section>
 
-    {{-- Latest projects --}}
-    <section class="relative overflow-hidden bg-ink py-24 text-paper lg:py-32">
-        <div class="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl" data-parallax="0.12"></div>
-        <div class="site-container relative">
+    {{-- What we love to do --}}
+    <section class="border-y border-ink/10 bg-white py-28 lg:py-40">
+        <div class="site-container">
             <div class="wow flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between" data-wow-animation="fadeInUp">
-                <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Selected work</p>
-                    <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Latest projects</h2>
-                    <p class="mt-4 max-w-sm text-paper/65">Creativity is at the heart of all our projects.</p>
+                <div class="max-w-3xl">
+                    <p class="eyebrow">Capabilities</p>
+                    <h2 class="mt-6 display-lg">What we love to do</h2>
                 </div>
-                <a href="{{ route('projects.index') }}" class="text-sm font-semibold text-accent transition hover:text-paper">All case studies →</a>
             </div>
 
-            <div class="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                @foreach ($projects as $index => $project)
-                    <a href="{{ route('projects.show', $project) }}" class="wow group block" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.1 * ($index % 3), 2) }}s">
-                        <div class="overflow-hidden bg-ink-soft">
-                            <img
-                                src="{{ $project->coverUrl() }}"
-                                alt="{{ $project->title }}"
-                                class="aspect-[4/3] w-full object-cover transition duration-700 ease-agency group-hover:scale-[1.04]"
-                                loading="lazy"
-                            >
+            <div class="mt-20 divide-y divide-ink/10">
+                @foreach ($services as $index => $service)
+                    <div class="wow grid gap-6 py-12 lg:grid-cols-12 lg:gap-10" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.05 * $index, 2) }}s">
+                        <div class="lg:col-span-1">
+                            <p class="text-sm font-medium text-mist">0{{ $index + 1 }}</p>
                         </div>
-                        <div class="mt-4">
-                            <p class="text-xs uppercase tracking-[0.2em] text-paper/45">
-                                {{ $project->categories->pluck('name')->join(', ') ?: 'Project' }}
-                            </p>
-                            <h3 class="mt-2 font-display text-2xl font-semibold transition group-hover:text-accent">{{ $project->title }}</h3>
+                        <div class="lg:col-span-4">
+                            <h3 class="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{{ $service->title }}</h3>
+                            @if ($service->description)
+                                <p class="mt-4 max-w-sm text-sm font-light leading-relaxed text-mist">{{ $service->description }}</p>
+                            @endif
                         </div>
-                    </a>
+                        <div class="lg:col-span-7">
+                            @if ($service->items)
+                                <ul class="grid gap-x-10 gap-y-3 sm:grid-cols-2">
+                                    @foreach ($service->items as $item)
+                                        <li class="border-t border-ink/10 pt-3 text-sm text-ink/80">{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
     </section>
 
-    {{-- Approach --}}
-    <section class="site-container py-24 lg:py-32">
-        <div class="wow max-w-3xl" data-wow-animation="fadeInUp">
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Process</p>
-            <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Our approach</h2>
+    {{-- Selected work --}}
+    <section class="site-container py-28 lg:py-40">
+        <div class="wow flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between" data-wow-animation="fadeInUp">
+            <div>
+                <p class="eyebrow">Selected work</p>
+                <h2 class="mt-6 display-lg">Recent engagements</h2>
+            </div>
+            <a href="{{ route('projects.index') }}" class="text-sm font-medium uppercase tracking-[0.16em] text-ink underline underline-offset-8">All work</a>
         </div>
 
-        @php
-            $steps = [
-                ['Research', 'We research to understand the vision, audience, product, and goals — then ask again until the brief is sharp.'],
-                ['Concept', 'Working with you, our designers craft experiences that are beautiful and unmistakably usable.'],
-                ['Development', 'Backend and frontend built for performance and maintainability, with best practices as the default.'],
-                ['Quality Assurance', 'We test continuously so every detail ships bug-free and top-notch.'],
-                ['Launch & Grow', 'We ship with care, then stay close — measuring, iterating, and compounding results.'],
-            ];
-        @endphp
-
-        <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            @foreach ($steps as $index => $step)
-                <div class="wow rounded-[1.75rem] bg-white/70 p-8 shadow-[0_1px_0_rgba(16,20,26,0.06)] ring-1 ring-ink/5 backdrop-blur" data-wow-animation="zoomIn" data-wow-delay="{{ number_format(0.08 * $index, 2) }}s">
-                    <p class="font-display text-sm text-accent">{{ ['One','Two','Three','Four','Five'][$index] }}</p>
-                    <h3 class="mt-4 font-display text-3xl font-semibold text-ink">{{ $step[0] }}</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-mist">{{ $step[1] }}</p>
-                </div>
+        <div class="mt-20 space-y-24">
+            @foreach ($projects->take(3) as $index => $project)
+                <a href="{{ route('projects.show', $project) }}" class="wow group block" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.08 * $index, 2) }}s">
+                    <div class="overflow-hidden bg-ink">
+                        <img
+                            src="{{ $project->coverUrl() }}"
+                            alt="{{ $project->title }}"
+                            class="aspect-[16/9] w-full object-cover transition duration-[1.1s] ease-agency group-hover:scale-[1.03]"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-mist">
+                                {{ $project->categories->pluck('name')->join(' / ') ?: 'Project' }}
+                            </p>
+                            <h3 class="mt-3 font-display text-3xl font-bold tracking-tight transition group-hover:text-accent sm:text-5xl">{{ $project->title }}</h3>
+                        </div>
+                        <span class="text-sm uppercase tracking-[0.16em] text-mist">View case</span>
+                    </div>
+                </a>
             @endforeach
+        </div>
+    </section>
+
+    {{-- Approach --}}
+    <section class="bg-ink py-28 text-paper lg:py-40">
+        <div class="site-container">
+            <div class="wow max-w-4xl" data-wow-animation="fadeInUp">
+                <p class="eyebrow text-paper/45">Process</p>
+                <h2 class="mt-6 display-lg">We turn vision into action with precision and purpose</h2>
+            </div>
+
+            @php
+                $steps = [
+                    ['Research & Discovery', 'Understanding is everything. We immerse in your vision, audience, and goals to uncover insights that drive impact.'],
+                    ['Collaborative Planning', 'Great ideas are born together. We challenge assumptions, refine concepts, and align on a bold plan of action.'],
+                    ['Innovative Execution', 'Execution is where mastery meets creativity — solutions that stand out and set the pace.'],
+                    ['Data-Driven Solutions', 'Every move is powered by analytics. We measure, refine, and adapt until success is engineered.'],
+                    ['Tangible Results', 'From campaigns to conversions, we deliver outcomes that elevate the business in every digital aspect.'],
+                    ['Relentless Improvement', 'The best is never finished. We evaluate, innovate, and evolve so growth keeps accelerating.'],
+                ];
+            @endphp
+
+            <div class="mt-20 grid gap-x-12 gap-y-16 md:grid-cols-2 xl:grid-cols-3">
+                @foreach ($steps as $index => $step)
+                    <div class="wow" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.06 * $index, 2) }}s">
+                        <p class="text-xs uppercase tracking-[0.22em] text-paper/40">0{{ $index + 1 }}</p>
+                        <h3 class="mt-5 font-display text-2xl font-bold tracking-tight sm:text-3xl">{{ $step[0] }}</h3>
+                        <p class="mt-4 max-w-sm text-sm font-light leading-relaxed text-paper/60">{{ $step[1] }}</p>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
 
     {{-- Insights --}}
     @if ($insights->isNotEmpty())
-        <section class="border-y border-ink/10 bg-white/40 py-24 lg:py-32">
-            <div class="site-container">
-                <div class="wow flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between" data-wow-animation="fadeInUp">
-                    <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Thinking</p>
-                        <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Insights</h2>
-                    </div>
-                    <a href="{{ route('insights.index') }}" class="text-sm font-semibold text-ink transition hover:text-accent">Browse insights →</a>
+        <section class="site-container py-28 lg:py-40">
+            <div class="wow flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between" data-wow-animation="fadeInUp">
+                <div>
+                    <p class="eyebrow">Thinking</p>
+                    <h2 class="mt-6 display-lg">Insights</h2>
                 </div>
+                <a href="{{ route('insights.index') }}" class="text-sm font-medium uppercase tracking-[0.16em] text-ink underline underline-offset-8">Browse</a>
+            </div>
 
-                <div class="mt-12 grid gap-8 lg:grid-cols-3">
-                    @foreach ($insights as $index => $insight)
-                        <a href="{{ route('insights.show', $insight) }}" class="wow group block" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.12 * $index, 2) }}s">
-                            <div class="overflow-hidden">
-                                <img src="{{ $insight->coverUrl() }}" alt="" class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
-                            </div>
-                            <p class="mt-4 text-xs uppercase tracking-[0.2em] text-mist">
-                                {{ optional($insight->published_at)->format('M j, Y') }}
-                            </p>
-                            <h3 class="mt-2 font-display text-2xl font-semibold text-ink transition group-hover:text-accent">{{ $insight->title }}</h3>
-                            <p class="mt-2 text-sm text-mist">{{ $insight->excerpt }}</p>
-                        </a>
-                    @endforeach
-                </div>
+            <div class="mt-16 grid gap-12 lg:grid-cols-3">
+                @foreach ($insights as $index => $insight)
+                    <a href="{{ route('insights.show', $insight) }}" class="wow group block" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.1 * $index, 2) }}s">
+                        <div class="overflow-hidden bg-paper-deep">
+                            <img src="{{ $insight->coverUrl() }}" alt="" class="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.03]" loading="lazy">
+                        </div>
+                        <p class="mt-5 text-xs uppercase tracking-[0.2em] text-mist">{{ optional($insight->published_at)->format('M j, Y') }}</p>
+                        <h3 class="mt-3 font-display text-2xl font-bold tracking-tight transition group-hover:text-accent">{{ $insight->title }}</h3>
+                    </a>
+                @endforeach
             </div>
         </section>
     @endif
 
     {{-- CTA --}}
-    <section class="site-container py-24 lg:py-32">
-        <div class="wow relative overflow-hidden rounded-[2rem] bg-accent px-8 py-16 text-ink sm:px-12 lg:px-16" data-wow-animation="fadeInUp">
-            <div class="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-white/25 blur-2xl" data-parallax="0.18"></div>
-            <p class="font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-                Ready to raise the bar?
-            </p>
-            <p class="mt-4 max-w-xl text-base text-ink/75">
-                Tell us about your product, audience, and ambition. We’ll reply with a clear next step.
-            </p>
-            <a href="{{ route('contact') }}" class="btn-primary mt-8 bg-ink text-paper hover:bg-ink-soft">Say hello</a>
+    <section class="border-t border-ink/10">
+        <div class="site-container py-28 lg:py-40">
+            <div class="wow max-w-5xl" data-wow-animation="fadeInUp">
+                <h2 class="display-lg text-balance">Ready to elevate your brand and drive real results?</h2>
+                <p class="mt-8 max-w-xl text-lg font-light text-mist">Let’s connect and start creating the future together.</p>
+                <a href="{{ route('contact') }}" class="btn-primary mt-12">Say hello</a>
+            </div>
         </div>
     </section>
 @endsection

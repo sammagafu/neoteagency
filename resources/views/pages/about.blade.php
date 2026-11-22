@@ -3,49 +3,55 @@
 @section('title', 'About — '.($site['site_name'] ?? 'Neotelabs'))
 
 @section('content')
-    <section class="relative min-h-[70vh] overflow-hidden pt-28">
+    <section class="site-container pb-20 pt-36 lg:pb-28 lg:pt-44">
+        <p class="wow eyebrow" data-wow-animation="fadeInDown">About</p>
+        <h1 class="wow mt-8 max-w-5xl display-xl" data-wow-animation="fadeInUp" data-wow-delay="0.1s">
+            Together, we lead the digital part of your business into success
+        </h1>
+        <p class="wow mt-10 max-w-2xl text-lg font-light leading-relaxed text-mist" data-wow-animation="fadeInUp" data-wow-delay="0.22s">
+            {{ $site['about_blurb'] ?? 'We are a young and creative team dedicated to raise the bar of your product just a bit higher to the top position in the market.' }}
+        </p>
+    </section>
+
+    <section class="relative min-h-[60vh] overflow-hidden bg-ink">
         <div class="parallax-frame">
-            <div class="parallax-layer" data-parallax="0.3">
+            <div class="parallax-layer" data-parallax="0.22">
                 <img src="{{ asset('images/neote/team.jpg') }}" alt="">
             </div>
-            <div class="absolute inset-0 bg-ink/70"></div>
-            <div class="grain absolute inset-0"></div>
-        </div>
-        <div class="site-container relative flex min-h-[70vh] flex-col justify-end pb-16">
-            <p class="wow font-display text-sm font-semibold uppercase tracking-[0.35em] text-accent" data-wow-animation="fadeInDown">
-                {{ $site['site_name'] ?? 'Neotelabs' }}
-            </p>
-            <h1 class="wow mt-5 max-w-5xl font-display text-4xl font-bold tracking-tight text-paper text-balance sm:text-6xl lg:text-7xl" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
-                Together, we lead the digital part of your business into success
-            </h1>
-            <p class="wow mt-6 max-w-2xl text-lg text-paper/75" data-wow-animation="fadeInUp" data-wow-delay="0.24s">
-                {{ $site['about_blurb'] ?? '' }}
-            </p>
+            <div class="absolute inset-0 bg-ink/35"></div>
         </div>
     </section>
 
-    <section class="site-container py-24 lg:py-32">
-        <div class="grid gap-10 lg:grid-cols-12">
-            <h2 class="wow font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:col-span-6" data-wow-animation="fadeInUp">
-                Neotelabs is the company if you want to grow online.
-            </h2>
-            <p class="wow text-base leading-relaxed text-mist lg:col-span-6 lg:pt-2" data-wow-animation="fadeInUp" data-wow-delay="0.15s">
-                We have a go-getter mentality and take the customer with us. With clear communication, without lengthy meetings or other unnecessary fuss, we embark on the adventure together. No empty promises — immediately demonstrable results.
-            </p>
+    <section class="site-container py-28 lg:py-40">
+        <div class="grid gap-16 lg:grid-cols-2">
+            <div class="wow" data-wow-animation="fadeInUp">
+                <p class="eyebrow">Mission</p>
+                <h2 class="mt-6 display-md">Propelling brands toward exceptional digital success</h2>
+                <p class="mt-6 text-base font-light leading-relaxed text-mist">
+                    We are the catalyst that elevates brands by delivering innovative, results-driven digital marketing solutions — with excellence, expertise, and tailored strategy.
+                </p>
+            </div>
+            <div class="wow" data-wow-animation="fadeInUp" data-wow-delay="0.12s">
+                <p class="eyebrow">Vision</p>
+                <h2 class="mt-6 display-md">Revolutionizing the digital landscape</h2>
+                <p class="mt-6 text-base font-light leading-relaxed text-mist">
+                    Setting new benchmarks for marketing and advertising excellence. Empowering clients to dominate their industries and achieve sustainable growth.
+                </p>
+            </div>
         </div>
     </section>
 
-    <section class="border-y border-ink/10 bg-white/50 py-24 lg:py-32">
+    <section class="border-y border-ink/10 bg-white py-28 lg:py-40">
         <div class="site-container">
             <div class="wow max-w-3xl" data-wow-animation="fadeInUp">
-                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-accent">People</p>
-                <h2 class="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">The face of Neotelabs</h2>
-                <p class="mt-4 text-lg text-mist">Meet our team of creatives, fun-lovers, and magic makers.</p>
+                <p class="eyebrow">People</p>
+                <h2 class="mt-6 display-lg">The face of Neotelabs</h2>
+                <p class="mt-6 text-lg font-light text-mist">A young, creative team of professionals who love what we do.</p>
             </div>
 
-            <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="mt-20 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($team as $index => $member)
-                    <article class="wow group" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.1 * ($index % 4), 2) }}s">
+                    <article class="wow group" data-wow-animation="fadeInUp" data-wow-delay="{{ number_format(0.08 * ($index % 4), 2) }}s">
                         <div class="overflow-hidden bg-paper-deep">
                             <img
                                 src="{{ $member->photoUrl() }}"
@@ -54,8 +60,8 @@
                                 loading="lazy"
                             >
                         </div>
-                        <h3 class="mt-4 font-display text-xl font-semibold text-ink">{{ $member->name }}</h3>
-                        <p class="mt-1 text-sm text-mist">{{ $member->role }}</p>
+                        <h3 class="mt-5 font-display text-xl font-bold tracking-tight">{{ $member->name }}</h3>
+                        <p class="mt-1 text-sm font-light text-mist">{{ $member->role }}</p>
                     </article>
                 @endforeach
             </div>
